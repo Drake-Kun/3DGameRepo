@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/!Nathan's Assets/Scenes/BattleScene.unity
+    guid: d3f833f84efec1b4f9fee1668afa1b24
+  - enabled: 1
+    path: Assets/!Nathan's Assets/Scenes/DemoScene1.unity
+    guid: 297231bbba2b9e64195ab6688a724a74

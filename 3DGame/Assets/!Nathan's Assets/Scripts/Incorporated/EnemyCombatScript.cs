@@ -7,7 +7,7 @@ public class EnemyCombatScript : MonoBehaviour {
     public GameObject targetUnit;
 
     public int maxHealthValue;
-    int healthPoints;
+    public int healthPoints;
     public int attackValue;
     public int armorValue;
     public int magicValue;
