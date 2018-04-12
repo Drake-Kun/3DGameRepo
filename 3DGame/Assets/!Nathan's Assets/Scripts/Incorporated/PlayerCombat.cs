@@ -10,28 +10,14 @@ public class PlayerCombat: MonoBehaviour {
     public GameObject mageTargetUnit;
 
     // Knight stats relevant to battle
-    public bool knightMagicDamage;
-    public int knightMagicDamageValue;
-    public bool knightPhysicalDamage;
-    public int knightPhysicalDamageValue;
+    public int healthPointsMax;
+    public int healthPoints;
+    public int physicalDamage;
+    public int magicDamage;
+    public int armorValue;
+    public int resistValue;
+    public string damageType;
 
-    // Archer stats relevant to battle
-    public bool archerMagicDamage;
-    public int archerMagicDamageValue;
-    public bool archerPhysicalDamage;
-    public int archerPhysicalDamageValue;
-
-    // Healer stats relevant to battle
-    public bool healerMagicDamage;
-    public int healerMagicDamageValue;
-    public bool healerPhysicalDamage;
-    public int healerPhysicalDamageValue;
-
-    // Mage stats relevant to battle
-    public bool mageMagicDamage;
-    public int mageMagicDamageValue;
-    public bool magePhysicalDamage;
-    public int magePhysicalDamageValue;
 
     // Attacks relevant to all units
     public bool useBasicAttack = false;
@@ -45,39 +31,124 @@ public class PlayerCombat: MonoBehaviour {
     public bool useTag = false;
     public bool useSnare = false;
 
-    // Are we doing magic damage?
-    public bool magicDamage;
+    // Attacks relevant to the healer
+    public bool useHeal = false;
+    public bool useDispel = false;
+
+    // Attacks relevant to the mage
+    public bool useFireball = false;
+    public bool useFreeze = false;
 
     void Start()
     {
-    
+        // The knight is "FriendlyUnit1", so if we're "FriendlyUnit1" we will grab the knight's stats from "PlayerInformation"
+        if (gameObject.name == "FriendlyUnit1")
+        {
+            GetComponent<PlayerCombat>().healthPointsMax = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().knightMaxHealth;
+            GetComponent<PlayerCombat>().healthPoints = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().knightHealthPoints;
+            GetComponent<PlayerCombat>().physicalDamage = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().knightPhysicalDamage;
+            GetComponent<PlayerCombat>().magicDamage = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().knightMagicDamage;
+            GetComponent<PlayerCombat>().armorValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().knightArmorValue;
+            GetComponent<PlayerCombat>().resistValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().knightResistValue;
+        }
+
+        // The archer is "FriendlyUnit2", so if we're "FriendlyUnit2" we will grab the archer's stats from "PlayerInformation"
+        if (gameObject.name == "FriendlyUnit2")
+        {
+            GetComponent<PlayerCombat>().healthPointsMax = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().archerMaxHealth;
+            GetComponent<PlayerCombat>().healthPoints = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().archerHealthPoints;
+            GetComponent<PlayerCombat>().physicalDamage = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().archerPhysicalDamage;
+            GetComponent<PlayerCombat>().magicDamage = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().archerMagicDamage;
+            GetComponent<PlayerCombat>().armorValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().archerArmorValue;
+            GetComponent<PlayerCombat>().resistValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().archerResistValue;
+        }
+
+        // The healer is "FriendlyUnit3", so if we're "FriendlyUnit3" we will grab the healer's stats from "PlayerInformation"
+        if (gameObject.name == "FriendlyUnit3")
+        {
+            GetComponent<PlayerCombat>().healthPointsMax = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().healerMaxHealth;
+            GetComponent<PlayerCombat>().healthPoints = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().healerHealthPoints;
+            GetComponent<PlayerCombat>().physicalDamage = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().healerPhysicalDamage;
+            GetComponent<PlayerCombat>().magicDamage = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().healerMagicDamage;
+            GetComponent<PlayerCombat>().armorValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().healerArmorValue;
+            GetComponent<PlayerCombat>().resistValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().healerResistValue;
+        }
+
+        // The mage is "FriendlyUnit4", so if we're "FriendlyUnit4" we will grab the mage's stats from "PlayerInformation"
+        if (gameObject.name == "FriendlyUnit4")
+        {
+            GetComponent<PlayerCombat>().healthPointsMax = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().mageMaxHealth;
+            GetComponent<PlayerCombat>().healthPoints = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().mageHealthPoints;
+            GetComponent<PlayerCombat>().physicalDamage = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().magePhysicalDamage;
+            GetComponent<PlayerCombat>().magicDamage = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().mageMagicDamage;
+            GetComponent<PlayerCombat>().armorValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().mageArmorValue;
+            GetComponent<PlayerCombat>().resistValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().mageResistValue;
+        }
+    }
+
+    void Update()
+    {
+
     }
 
     void knightAttack()
     {
-        int damageDone = 1;
+        armorValue = GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().knightArmorValue;
 
-
-
-        if (magicDamage == false)
+        if (useDouble_edge == true)
         {
-            damageDone = knightPhysicalDamageValue - knightTargetUnit.GetComponent<EnemyCombatScript>().armorValue;
-            if (damageDone <= 0)
-            {
-                damageDone = 1;
-            }
+            physicalDamage *= 2;
+            GetComponent<PlayerInformation>().knightHealthPoints -= GameObject.Find("PlayerInformation").GetComponent<PlayerInformation>().knightPhysicalDamage;
+            useDouble_edge = false;
         }
 
-        if (magicDamage == true)
+        if (useTaunt == true)
         {
-            damageDone = knightMagicDamageValue - knightTargetUnit.GetComponent<EnemyCombatScript>().resistValue;
-            if (damageDone <= 0)
+            int successRating = Random.Range(0, 7);
+            if (successRating >= 1)
             {
-                damageDone = 1;
+                GameObject.Find("EnemyUnit1").GetComponent<EnemyCombatScript>().targetUnit = gameObject;
             }
+
+            if (successRating >= 2)
+            {
+                GameObject.Find("EnemyUnit2").GetComponent<EnemyCombatScript>().targetUnit = gameObject;
+            }
+
+            if (successRating >= 3)
+            {
+                GameObject.Find("EnemyUnit3").GetComponent<EnemyCombatScript>().targetUnit = gameObject;
+            }
+
+            if (successRating >= 4)
+            {
+                GameObject.Find("EnemyUnit4").GetComponent<EnemyCombatScript>().targetUnit = gameObject;
+            }
+
+            if (successRating >= 5)
+            {
+                GameObject.Find("EnemyUnit5").GetComponent<EnemyCombatScript>().targetUnit = gameObject;
+            }
+
+            if (successRating >= 6)
+            {
+                GameObject.Find("EnemyUnit6").GetComponent<EnemyCombatScript>().targetUnit = gameObject;
+            }
+
+            armorValue *= 2;
+            
+            useTaunt = false;
         }
 
-        knightTargetUnit.GetComponent<EnemyCombatScript>().healthPoints -= damageDone;
+        if (damageType == "Physical")
+        {
+            knightTargetUnit.GetComponent<EnemyCombatScript>().healthPoints -= physicalDamage + knightTargetUnit.GetComponent<EnemyCombatScript>().armorValue;
+        }
+
+        else
+        {
+            knightTargetUnit.GetComponent<EnemyCombatScript>().healthPoints -= magicDamage + knightTargetUnit.GetComponent<EnemyCombatScript>().resistValue;
+        }
     }
 
     void archerAttack()
@@ -87,10 +158,22 @@ public class PlayerCombat: MonoBehaviour {
 
     void healerAttack()
     {
-
+        if (useHeal == true)
+        {
+            healerTargetUnit.GetComponent<PlayerCombat>().healthPoints += magicDamage;        }
     }
 
     void mageAttack()
+    {
+
+    }
+
+    void ReadyCombat()
+    {
+
+    }
+
+    void RunCombat()
     {
 
     }

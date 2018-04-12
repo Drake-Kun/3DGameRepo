@@ -7,7 +7,7 @@ public class PlayerInformation : MonoBehaviour {
 
     public int knightMaxHealth;
     public int knightHealthPoints;
-    public int knightPhysicalDamag;
+    public int knightPhysicalDamage;
     public int knightMagicDamage;
     public int knightArmorValue;
     public int knightResistValue;
