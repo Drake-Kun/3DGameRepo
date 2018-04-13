@@ -21,12 +21,12 @@ public class BattleStartCamera: MonoBehaviour {
         moveDirection.Normalize();
         GetComponent<Rigidbody>().velocity = moveDirection * moveSpeed;
 
-        if (transform.position.z >= -11)
+        if (transform.position.z > -11)
         {
             moveSpeed = 0;
         }
-        
-        if (transform.rotation.x >= cameraFinish.transform.rotation.x)
+
+        if (transform.rotation.x > cameraFinish.transform.rotation.x)
         {
             transform.Rotate(Vector3.left * Time.deltaTime * rotateSpeed);
         }
