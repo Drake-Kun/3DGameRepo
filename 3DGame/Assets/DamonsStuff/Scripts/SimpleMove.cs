@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimpleMove : MonoBehaviour {
     public GameObject showMe;
+    public GameObject talkToMe;
 	// Use this for initialization
 	void Start () {
 		
@@ -24,6 +25,27 @@ public class SimpleMove : MonoBehaviour {
         if (other.gameObject.tag == "Interactable")
         {
             showMe.SetActive(true);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Interactable" && Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            talkToMe.SetActive(true);
+            showMe.SetActive(false);
+            talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
+            talkToMe.GetComponentInChildren<Typing>().Restart();
+            if (other.GetComponentInChildren<Talking>().semiCutscene)
+            {
+                GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Interactable")
+        {
+            showMe.SetActive(false);
         }
     }
 }
