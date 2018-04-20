@@ -30,7 +30,6 @@ public class BattleStartCamera: MonoBehaviour {
             combatCanvas.SetActive(true);
             if (initialMenuPopup == false)
             {
-                GameObject.Find("CombatCanvas").SetActive(true);
                 initialMenuPopup = true;
             }
         }

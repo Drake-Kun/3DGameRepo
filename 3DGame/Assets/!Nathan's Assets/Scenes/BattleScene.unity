@@ -199,9 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09e3532d9ed26d41a6629df71883fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHealthText: {fileID: 0}
-  Enemy1HealthText: {fileID: 0}
-  Enemy2HealthText: {fileID: 0}
 --- !u!1 &90193016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,7 +1733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &802409382
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2183,7 +2180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &963534420
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2680,7 +2677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1304497530
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2934,9 +2931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09e3532d9ed26d41a6629df71883fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHealthText: {fileID: 0}
-  Enemy1HealthText: {fileID: 0}
-  Enemy2HealthText: {fileID: 0}
 --- !u!1 &1480424790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3023,9 +3017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09e3532d9ed26d41a6629df71883fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHealthText: {fileID: 0}
-  Enemy1HealthText: {fileID: 0}
-  Enemy2HealthText: {fileID: 0}
 --- !u!1 &1648744915
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,7 +3406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1782362596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4402,7 +4393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2081250971
 RectTransform:
   m_ObjectHideFlags: 0

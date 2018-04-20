@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class TurnBasedCombatStateMachine : MonoBehaviour {
 
+    public GameObject baseMenuButtons;
+
     public GameObject playerTargetUnit;
     public GameObject enemy1TargetUnit;
     public GameObject enemy2TargetUnit;
