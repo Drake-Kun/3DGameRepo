@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitInformation : MonoBehaviour {
+public class OldBaseUnitInformation {
 
     public int unitLevel;
 
@@ -64,24 +64,24 @@ public class UnitInformation : MonoBehaviour {
         if (playerUnit == false && fallen == true && expDistributed == false)
         {
             // Checks to see if the apprpriate units are alive to recieve exp. Fallen units don't DESERVE exp. 
-            if (GameObject.Find("UnitInformationKnight").GetComponent<UnitInformation>().fallen == false)
+            if (GameObject.Find("UnitInformationKnight").GetComponent<OldBaseUnitInformation>().fallen == false)
             {
-                GameObject.Find("UnitInformationKnight").GetComponent<UnitInformation>().unitExp += expGiven;
+                GameObject.Find("UnitInformationKnight").GetComponent<OldBaseUnitInformation>().unitExp += expGiven;
             }
 
-            if (GameObject.Find("UnitInformationArcher").GetComponent<UnitInformation>().fallen == false)
+            if (GameObject.Find("UnitInformationArcher").GetComponent<OldBaseUnitInformation>().fallen == false)
             {
-                GameObject.Find("UnitInformationArcher").GetComponent<UnitInformation>().unitExp += expGiven;
+                GameObject.Find("UnitInformationArcher").GetComponent<OldBaseUnitInformation>().unitExp += expGiven;
             }
 
-            if (GameObject.Find("UnitInformationHealer").GetComponent<UnitInformation>().fallen == false)
+            if (GameObject.Find("UnitInformationHealer").GetComponent<OldBaseUnitInformation>().fallen == false)
             {
-                GameObject.Find("UnitInformationHealer").GetComponent<UnitInformation>().unitExp += expGiven;
+                GameObject.Find("UnitInformationHealer").GetComponent<OldBaseUnitInformation>().unitExp += expGiven;
             }
 
-            if (GameObject.Find("UnitInformationMage").GetComponent<UnitInformation>().fallen == false)
+            if (GameObject.Find("UnitInformationMage").GetComponent<OldBaseUnitInformation>().fallen == false)
             {
-                GameObject.Find("UnitInformationMage").GetComponent<UnitInformation>().unitExp += expGiven;
+                GameObject.Find("UnitInformationMage").GetComponent<OldBaseUnitInformation>().unitExp += expGiven;
             }
 
             // Okay, we've distributed exp
