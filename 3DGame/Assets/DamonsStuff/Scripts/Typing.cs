@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Typing : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class Typing : MonoBehaviour {
     public GameObject showMe;
     public GameObject talkToMe;
     GameObject MainCamera;
+    public bool combat;
     void Start () {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         text = gameObject.GetComponent<Text>().text;
@@ -43,7 +45,12 @@ public class Typing : MonoBehaviour {
             {
                 showMe.SetActive(true);
                 talkToMe.SetActive(false);
-                GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
+                //GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
+                if (combat)
+                {
+                    SceneManager.LoadScene("BattleScene");
+                    Debug.Log("Yeah, we wanna fight");
+                }
             }
         }
     }

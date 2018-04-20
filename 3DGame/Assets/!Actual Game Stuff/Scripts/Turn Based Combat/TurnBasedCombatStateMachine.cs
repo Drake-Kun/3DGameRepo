@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TurnBasedCombatStateMachine : MonoBehaviour {
 
@@ -9,6 +11,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
     public GameObject enemy2TargetUnit;
 
     public GameObject calculateDamageTargetUnit;
+
+    public GameObject PlayerHealthText;
+
+    public GameObject Enemy1HealthText;
+
+    public GameObject Enemy2HealthText;
 
     public int playerDamage;
     public int playerResist;
@@ -30,7 +38,8 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         ENEMY1CHOICE,
         ENEMY2CHOICE,
         LOSE,
-        WIN
+        WIN,
+        FLED
     }
 
     public static battleStates currentState;
@@ -38,12 +47,13 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        
 
         currentState = battleStates.START;
 	}
-	
+
     // Update is called once per frame
-	void Update () {
+    void Update() {
         Debug.Log(currentState);
 
         if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().currentHealthPoints <= 0
@@ -76,11 +86,13 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                 break;
 
             case (battleStates.PLAYERCHOICE):
-                
+
                 if (Input.GetButton("Escape") && GameObject.Find("PlayerSelectEnemyCanvas").activeSelf == true)
                 {
-                    GameObject.Find("PlayerSelectEnemyCanvas").SetActive(false);
-                    GameObject.Find("BaseMenuButtons").SetActive(true);
+                    GameObject.Find("PlayerSelectEnemyCanvas").GetComponentInChildren<GameObject>().SetActive(false);
+                    GameObject.Find("PlayerSpellMenuButtons").GetComponentInChildren<GameObject>().SetActive(false);
+
+                    GameObject.Find("BaseMenuButtons").GetComponentInChildren<GameObject>().SetActive(true);
                 }
 
                 break;
@@ -143,7 +155,11 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 break;
         }
-	}
+
+        PlayerHealthText.GetComponent<Text>().text = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().healthPointsCurrent + "/" + GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().healthPointsMax;
+        Enemy1HealthText.GetComponent<Text>().text = GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().currentHealthPoints + "";
+        Enemy2HealthText.GetComponent<Text>().text = GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().currentHealthPoints + "";
+    }
 
     public void OnClickAttack()
     {
@@ -171,11 +187,23 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         GameObject.Find("PlayerSelectEnemyCanvas").SetActive(true);
     }
 
-    void OnClickGuard()
+    public void OnClickGuard()
     {
         playerResist += GameObject.Find("GameInformation").GetComponent<PlayerInformation>().physicalResist * 1;
         GameObject.Find("BaseMenuButtons").SetActive(false);
         currentState = battleStates.ENEMY1CHOICE;
+    }
+
+    public void OnClickFlee()
+    {
+        SceneManager.LoadScene("GameDemo");
+
+        //int fleeOutcome = Random.Range(0, 100);
+        //if (fleeOutcome > 60)
+        //{
+            // You got away
+            // Exit the combat scene
+        //}
     }
 
     public void OnClickEnemy1Button()
