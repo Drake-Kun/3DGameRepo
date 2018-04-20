@@ -41,7 +41,8 @@ public class SimpleMove : MonoBehaviour {
             }
             if (other.GetComponentInChildren<Talking>().combat)
             {
-                talkToMe.GetComponent<Typing>().combat = true;
+                //Debug.Log("Atttaaaaacccckckkkk");
+                talkToMe.GetComponentInChildren<Typing>().combat = true;
             }
         }
     }

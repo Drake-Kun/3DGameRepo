@@ -196,7 +196,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public void OnClickFlee()
     {
-        SceneManager.LoadScene("GameDemo");
+        SceneManager.LoadScene("ThreeChoices");
 
         //int fleeOutcome = Random.Range(0, 100);
         //if (fleeOutcome > 60)

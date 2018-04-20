@@ -1488,7 +1488,7 @@ MonoBehaviour:
   - World
   semiCutscene: 0
   changeCamera: {fileID: 0}
-  combat: 0
+  combat: 1
 --- !u!1 &1917188500
 GameObject:
   m_ObjectHideFlags: 0
