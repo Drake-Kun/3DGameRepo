@@ -17,6 +17,8 @@ public class PlayerInformation : MonoBehaviour {
     public int techDamage = 2;
     public int techResist = 2;
 
+    public bool fallen = false;
+
     void Start()
     {
         playerLevel = 1;
@@ -48,6 +50,11 @@ public class PlayerInformation : MonoBehaviour {
             currentEXP -= neededEXP;
             playerLevel += 1;
             neededEXP = (neededEXP + 5) * 2;
+        }
+
+        if (healthPointsCurrent <= 0)
+        {
+            fallen = true;
         }
     }
 }

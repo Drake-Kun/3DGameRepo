@@ -10,13 +10,15 @@ public class EnemyInformation : MonoBehaviour {
     public int physicalResist = 1;
     public int techResist = 1;
 
+    public bool fallen = false;
+
     public int expGiven = 5;
 
     void Update()
     {
         if (currentHealthPoints <= 0)
         {
-            Destroy(gameObject);
+            fallen = true;
         }
     }
 }

@@ -8,8 +8,6 @@ public class BattleStartCamera: MonoBehaviour {
     public GameObject cameraFinish;
     public GameObject combatCanvas;
 
-    public bool initialMenuPopup = false;
-
     public float moveSpeed;
     public float rotateSpeed;
 
@@ -28,10 +26,6 @@ public class BattleStartCamera: MonoBehaviour {
         {
             moveSpeed = 0;
             combatCanvas.SetActive(true);
-            if (initialMenuPopup == false)
-            {
-                initialMenuPopup = true;
-            }
         }
 
         if (transform.rotation.x > cameraFinish.transform.rotation.x)
