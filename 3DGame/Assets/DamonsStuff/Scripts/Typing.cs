@@ -45,11 +45,11 @@ public class Typing : MonoBehaviour {
             {
                 showMe.SetActive(true);
                 talkToMe.SetActive(false);
-                //GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
+                GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
                 if (combat)
                 {
-                    SceneManager.LoadScene("BattleScene");
-                    Debug.Log("Yeah, we wanna fight");
+                    //SceneManager.LoadScene("BattleScene");
+                    //Debug.Log("Yeah, we wanna fight");
                 }
             }
         }

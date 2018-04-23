@@ -9,6 +9,7 @@ public class Fading : MonoBehaviour {
     float timer;
     bool fadingIn = false;
     bool actuallyIn = true;
+    bool main = false;
     GameObject switchCamera;
     GameObject MainCamera;
     // Use this for initialization
@@ -57,12 +58,14 @@ public class Fading : MonoBehaviour {
         } else
         {
             actuallyIn = false;
-            if (switchCamera!= GameObject.FindGameObjectWithTag("MainCamera"))
+            if (!main)
             {
+                Debug.Log("Switching Cameras");
                 MainCamera.SetActive(false);
                 switchCamera.SetActive(true);
             } else
             {
+                Debug.Log("Going Back");
                 MainCamera.SetActive(true);
                 switchCamera.SetActive(false);
             }
@@ -73,7 +76,11 @@ public class Fading : MonoBehaviour {
     {
         if (changeCamera != MainCamera)
         {
+            main = false;
             switchCamera = changeCamera;
+        } else
+        {
+            main = true;
         }
         fadingIn = true;
     }
