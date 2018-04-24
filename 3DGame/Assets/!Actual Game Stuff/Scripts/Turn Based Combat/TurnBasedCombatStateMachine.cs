@@ -7,19 +7,40 @@ using UnityEngine.UI;
 public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public GameObject combatCanvas;
-    public GameObject baseMenuCanvas;
-    public GameObject playerSpellsMenuCanvas;
-    public GameObject playerSelectEnemyCanvas;
 
-    public GameObject playerTargetUnit;
+    public GameObject player1CombatCanvas;
+    public GameObject player2CombatCanvas;
+    public GameObject player3CombatCanvas;
+    public GameObject player4CombatCanvas;
+
+    public GameObject player1BaseMenuCanvas;
+    public GameObject player2BaseMenuCanvas;
+    public GameObject player3BaseMenuCanvas;
+    public GameObject player4BaseMenuCanvas;
+
+    public GameObject player1SpellsMenuCanvas;
+    public GameObject player2SpellsMenuCanvas;
+    public GameObject player3SpellsMenuCanvas;
+    public GameObject player4SpellMenuCanvas;
+
+    public GameObject player1SelectEnemyCanvas;
+    public GameObject player2SelectEnemyCanvas;
+    public GameObject player3SelectEnemyCanvas;
+    public GameObject player4SelectEnemyCanvas;
+
+    public GameObject player1TargetUnit;
+    public GameObject player2TargetUnit;
+    public GameObject player3TargetUnit;
+    public GameObject player4TargetUnit;
+
     public GameObject enemy1TargetUnit;
     public GameObject enemy2TargetUnit;
+    public GameObject enemy3TargetUnit;
+    public GameObject enemy4TargetUnit;
+    public GameObject enemy5TargetUnit;
+    public GameObject enemy6TargetUnit;
 
     public GameObject calculateDamageTargetUnit;
-
-    public int playerHealthValueMax;
-    public int playerHealthValue;
-    public GameObject PlayerHealthText;
 
     public int playerDamage;
     public int playerResist;
@@ -61,8 +82,8 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
     void Update() {
         Debug.Log(currentState);
 
-        if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().fallen == true
-                && GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().fallen == true)
+        if (GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().fallen == true
+                && GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().fallen == true)
         {
             currentState = BattleStates.WIN;
         }
@@ -77,27 +98,27 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             case (BattleStates.START):
 
                 combatCanvas.SetActive(true);
-                baseMenuCanvas.SetActive(true);
-                playerSelectEnemyCanvas.SetActive(false);
-                playerSpellsMenuCanvas.SetActive(false);
+                player1BaseMenuCanvas.SetActive(true);
+                player1SelectEnemyCanvas.SetActive(false);
+                player1SpellsMenuCanvas.SetActive(false);
                 currentState = BattleStates.PLAYERCHOICE;
 
                 break;
 
             case (BattleStates.PLAYERCHOICE):
 
-                if (Input.GetKeyDown(KeyCode.Alpha1) && playerSelectEnemyCanvas.activeSelf && basicAttackSelected)
+                if (Input.GetKeyDown(KeyCode.Alpha1) && player1SelectEnemyCanvas.activeSelf && basicAttackSelected)
                 {
-                    playerSelectEnemyCanvas.SetActive(false);
+                    player1SelectEnemyCanvas.SetActive(false);
 
-                    baseMenuCanvas.SetActive(true);
+                    player1BaseMenuCanvas.SetActive(true);
                 }
 
-                if (Input.GetKeyDown(KeyCode.Alpha1) && playerSpellsMenuCanvas.activeSelf == true)
+                if (Input.GetKeyDown(KeyCode.Alpha1) && player1SpellsMenuCanvas.activeSelf == true)
                 {
-                    playerSpellsMenuCanvas.SetActive(false);
+                    player1SpellsMenuCanvas.SetActive(false);
 
-                    baseMenuCanvas.SetActive(true);
+                    player1BaseMenuCanvas.SetActive(true);
                 }
 
                 break;
@@ -108,7 +129,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     currentState = BattleStates.ENEMY2CHOICE;
                 }
                 enemy1TargetUnit = GameObject.Find("FriendlyUnit1");
-                enemy1Damage += GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().physicalDamage;
+                enemy1Damage += GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().physicalDamage;
 
                 currentState = BattleStates.ENEMY2CHOICE;
 
@@ -116,7 +137,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
             case (BattleStates.ENEMY2CHOICE):
                 enemy2TargetUnit = GameObject.Find("FriendlyUnit1");
-                enemy2Damage += GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().physicalDamage;
+                enemy2Damage += GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().physicalDamage;
 
                 currentState = BattleStates.CALCULATEDAMAGE;
 
@@ -128,15 +149,16 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 2)
                 {
-                    playerTargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= playerDamage;
-                    Debug.Log(playerTargetUnit.name + " takes " + playerDamage + " damage!");
+                    player1TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= playerDamage;
+                    Debug.Log(player1TargetUnit.name + " takes " + playerDamage + " damage!");
                     playerDamage = 0;
                 }
 
                 if (timer >= 4)
                 {
-                    if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().fallen == false)
+                    if (GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().fallen == false)
                     {
+                        GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().attacks = true;
                         enemy1TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy1Damage;
                         Debug.Log(enemy1TargetUnit.name + " takes " + enemy1Damage + " damage!");
                         enemy1Damage = 0;
@@ -145,8 +167,9 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 6)
                 {
-                    if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().fallen == false)
+                    if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().fallen == false)
                     {
+                        GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().attacks = true;
                         enemy2TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy2Damage;
                         Debug.Log(enemy2TargetUnit.name + " takes " + enemy2Damage + " damage!");
                         enemy2Damage = 0;
@@ -163,8 +186,9 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             case (BattleStates.WIN):
 
                 GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().currentEXP +=
-                    GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().expGiven +
-                        GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().expGiven;
+                    GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().expGiven +
+                        GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().expGiven;
+                SceneManager.LoadScene("ThreeChoices");
 
 
 
@@ -175,48 +199,44 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
             case (BattleStates.LOSE):
 
+                SceneManager.LoadScene("MainMenu");
                 // Bring up a loss message!
                 // Send the player back to the main menu
 
                 break;
         }
-
-        playerHealthValueMax = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().healthPointsMax;
-        playerHealthValue = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().healthPointsCurrent;
-
-        PlayerHealthText.GetComponent<Text>().text = playerHealthValue + "/" + playerHealthValueMax;
     }
 
-    public void OnClickAttack()
+    public void OnPlayer1ClickAttack()
     {
-        baseMenuCanvas.SetActive(false);
+        player1BaseMenuCanvas.SetActive(false);
         basicAttackSelected = true;
-        playerDamage += GameObject.Find("GameInformation").GetComponent<PlayerInformation>().physicalDamage * 1;
-        playerSelectEnemyCanvas.SetActive(true);
+        playerDamage += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalDamage * 1;
+        player1SelectEnemyCanvas.SetActive(true);
     }
 
-    public void OnClickSpells()
+    public void OnPlayer1ClickSpells()
     {
-        baseMenuCanvas.SetActive(false);
+        player1BaseMenuCanvas.SetActive(false);
 
-        playerSpellsMenuCanvas.SetActive(true);
+        player1SpellsMenuCanvas.SetActive(true);
     }
 
-    public void OnClickSpellRekt()
+    public void OnPlayer1ClickSpellRekt()
     {
-        playerSpellsMenuCanvas.SetActive(false);
+        player1SpellsMenuCanvas.SetActive(false);
         spellRektSelected = true;
 
-        playerDamage += GameObject.Find("GameInformation").GetComponent<PlayerInformation>().physicalDamage * 2;
-        playerDamage += GameObject.Find("GameInformation").GetComponent<PlayerInformation>().techDamage * 2;
+        playerDamage += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalDamage * 2;
+        playerDamage += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().techDamage * 2;
 
-        playerSelectEnemyCanvas.SetActive(true);
+        player1SelectEnemyCanvas.SetActive(true);
     }
 
-    public void OnClickGuard()
+    public void OnPlayer1ClickGuard()
     {
-        playerResist += GameObject.Find("GameInformation").GetComponent<PlayerInformation>().physicalResist * 1;
-        baseMenuCanvas.SetActive(false);
+        playerResist += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalResist * 1;
+        player1BaseMenuCanvas.SetActive(false);
         currentState = BattleStates.ENEMY1CHOICE;
     }
 
@@ -232,17 +252,17 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         //}
     }
 
-    public void OnClickEnemy1Button()
+    public void OnPlayer1ClickEnemy1Button()
     {
-        playerTargetUnit = GameObject.Find("EnemyUnit2");
-        playerSelectEnemyCanvas.SetActive(false);
-        currentState = BattleStates.ENEMY1CHOICE;
+        player1TargetUnit = GameObject.Find("EnemyUnit1");
+        player1SelectEnemyCanvas.SetActive(false);
+        player2BaseMenuCanvas.SetActive(true);
     }
 
-    public void OnClickEnemy2Button()
+    public void OnPlayer1ClickEnemy2Button()
     {
-        playerTargetUnit = GameObject.Find("EnemyUnit3");
-        playerSelectEnemyCanvas.SetActive(false);
-        currentState = BattleStates.ENEMY1CHOICE;
+        player1TargetUnit = GameObject.Find("EnemyUnit2");
+        player1SelectEnemyCanvas.SetActive(false);
+        player2BaseMenuCanvas.SetActive(true);
     }
 }

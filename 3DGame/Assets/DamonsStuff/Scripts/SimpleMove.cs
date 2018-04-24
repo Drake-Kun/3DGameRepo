@@ -39,11 +39,9 @@ public class SimpleMove : MonoBehaviour {
             {
                 GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
             }
-            if (other.GetComponentInChildren<Talking>().combat)
-            {
                 //Debug.Log("Atttaaaaacccckckkkk");
-                talkToMe.GetComponentInChildren<Typing>().combat = true;
-            }
+                talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
+            
         }
     }
     private void OnTriggerExit(Collider other)

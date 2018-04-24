@@ -5,17 +5,18 @@ using UnityEngine;
 public class PlayerInformation : MonoBehaviour {
 
     public int playerLevel;
+    public string playerName;
     public int currentEXP;
     public int neededEXP;
 
-    public int healthPointsMax = 30;
+    public int healthPointsMax;
     public int healthPointsCurrent;
-    public int techPointsMax = 20;
+    public int techPointsMax;
     public int techPointsCurrent;
-    public int physicalDamage = 5;
-    public int physicalResist = 2;
-    public int techDamage = 2;
-    public int techResist = 2;
+    public int physicalDamage;
+    public int physicalResist;
+    public int techDamage;
+    public int techResist;
 
     public bool fallen = false;
 

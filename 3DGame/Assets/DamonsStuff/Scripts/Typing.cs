@@ -48,8 +48,8 @@ public class Typing : MonoBehaviour {
                 GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
                 if (combat)
                 {
-                    //SceneManager.LoadScene("BattleScene");
-                    //Debug.Log("Yeah, we wanna fight");
+                    SceneManager.LoadScene("BattleScene");
+                    Debug.Log("Yeah, we wanna fight");
                 }
             }
         }

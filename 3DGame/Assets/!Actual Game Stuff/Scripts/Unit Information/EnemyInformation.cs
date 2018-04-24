@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class EnemyInformation : MonoBehaviour {
 
-    public int currentHealthPoints = 5;
-    public int physicalDamage = 2;
-    public int techDamage = 1;
-    public int physicalResist = 1;
-    public int techResist = 1;
+    Animator anim;
+
+    public int currentHealthPoints;
+    public int physicalDamage;
+    public int techDamage;
+    public int physicalResist;
+    public int techResist;
 
     public bool fallen = false;
+    public bool attacks = false;
 
-    public int expGiven = 5;
+    public int expGiven;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
         if (currentHealthPoints <= 0)
         {
             fallen = true;
+            anim.SetBool("Dies", true);
+        }
+
+        if (attacks == true)
+        {
+            anim.SetBool("Attacks", true);
+            attacks = false;
         }
     }
 }
