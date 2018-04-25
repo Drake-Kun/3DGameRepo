@@ -7874,9 +7874,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatCanvas: {fileID: 1745998462}
-  baseMenuCanvas: {fileID: 569112113}
-  playerSpellsMenuCanvas: {fileID: 1782362595}
-  playerSelectEnemyCanvas: {fileID: 963534419}
+  player1CombatCanvas: {fileID: 1387696191}
+  player2CombatCanvas: {fileID: 1691057225}
+  player3CombatCanvas: {fileID: 1225108167}
+  player4CombatCanvas: {fileID: 80013424}
+  player1BaseMenuCanvas: {fileID: 569112113}
+  player2BaseMenuCanvas: {fileID: 930134884}
+  player3BaseMenuCanvas: {fileID: 909275997}
+  player4BaseMenuCanvas: {fileID: 951835569}
+  player1SpellsMenuCanvas: {fileID: 1782362595}
+  player2SpellsMenuCanvas: {fileID: 1519997254}
+  player3SpellsMenuCanvas: {fileID: 1296477258}
+  player4SpellMenuCanvas: {fileID: 1875137961}
+  player1SelectEnemyCanvas: {fileID: 963534419}
+  player2SelectEnemyCanvas: {fileID: 216797460}
+  player3SelectEnemyCanvas: {fileID: 1642999745}
+  player4SelectEnemyCanvas: {fileID: 1492217559}
   player1TargetUnit: {fileID: 0}
   player2TargetUnit: {fileID: 0}
   player3TargetUnit: {fileID: 0}
@@ -7888,14 +7901,37 @@ MonoBehaviour:
   enemy5TargetUnit: {fileID: 0}
   enemy6TargetUnit: {fileID: 0}
   calculateDamageTargetUnit: {fileID: 0}
-  playerDamage: 0
-  playerResist: 0
-  basicAttackSelected: 0
+  player1Damage: 0
+  player1Resist: 0
+  player2Damage: 0
+  player2Resist: 0
+  player3Damage: 0
+  player3Resist: 0
+  player4Damage: 0
+  player4Resist: 0
+  player1BasicAttackSelected: 0
+  player2BasicAttackSelected: 0
+  player3BasicAttackSelected: 0
+  player4BasicAttackSelected: 0
   spellRektSelected: 0
+  enemy1ValidUnitSelection: 0
   enemy1Damage: 0
   enemy1Resist: 0
+  enemy2ValidUnitSelection: 0
   enemy2Damage: 0
   enemy2Resist: 0
+  enemy3ValidUnitSelection: 0
+  enemy3Damage: 0
+  enemy3Resist: 0
+  enemy4ValidUnitSelection: 0
+  enemy4Damage: 0
+  enemy4Resist: 0
+  enemy5ValidUnitSelection: 0
+  enemy5Damage: 0
+  enemy5Resist: 0
+  enemy6ValidUnitSelection: 0
+  enemy6Damage: 0
+  enemy6Resist: 0
   timer: 0
 --- !u!1 &1723954139
 GameObject:
