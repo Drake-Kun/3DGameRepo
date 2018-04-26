@@ -17,6 +17,8 @@ public class Typing : MonoBehaviour {
     public GameObject talkToMe;
     GameObject MainCamera;
     public bool combat;
+    bool activateME = false;
+    private bool isTalking = false;
     void Start () {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         text = gameObject.GetComponent<Text>().text;
@@ -37,12 +39,13 @@ public class Typing : MonoBehaviour {
         string words = text.Substring(0, charCount);
         //Debug.Log(words);
         gameObject.GetComponent<Text>().text = words;
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+        if (Input.GetButtonDown("Fire1") && isTalking && activateME)
         {
             conversationIndex++;
             charCount = 0;
             if (conversationIndex >= conversation.Length)
             {
+                isTalking = false;
                 showMe.SetActive(true);
                 talkToMe.SetActive(false);
                 GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
@@ -53,6 +56,7 @@ public class Typing : MonoBehaviour {
                 }
             }
         }
+        activateME = true;
     }
 
     public void Restart()
@@ -60,5 +64,6 @@ public class Typing : MonoBehaviour {
         conversationIndex = 0;
         totalTime = 0;
         charCount = 0;
+        isTalking = true;
     }
 }

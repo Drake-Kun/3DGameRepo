@@ -29,19 +29,21 @@ public class SimpleMove : MonoBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Interactable" && Input.GetKeyDown(KeyCode.Alpha0))
+        if (other.gameObject.tag == "Interactable" && Input.GetButtonDown("Fire1"))
         {
-            talkToMe.SetActive(true);
-            showMe.SetActive(false);
-            talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
-            talkToMe.GetComponentInChildren<Typing>().Restart();
-            if (other.GetComponentInChildren<Talking>().semiCutscene)
+            if (talkToMe.active == false)
             {
-                GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
-            }
+                talkToMe.SetActive(true);
+                showMe.SetActive(false);
+                talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
+                talkToMe.GetComponentInChildren<Typing>().Restart();
+                if (other.GetComponentInChildren<Talking>().semiCutscene)
+                {
+                    GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
+                }
                 //Debug.Log("Atttaaaaacccckckkkk");
                 talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
-            
+            } 
         }
     }
     private void OnTriggerExit(Collider other)
