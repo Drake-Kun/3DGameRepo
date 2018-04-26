@@ -6,7 +6,6 @@ public class BattleStartCamera: MonoBehaviour {
 
     public GameObject cameraStart;
     public GameObject cameraFinish;
-    public GameObject combatCanvas;
 
     public float moveSpeed;
     public float rotateSpeed;
@@ -25,7 +24,7 @@ public class BattleStartCamera: MonoBehaviour {
         if (transform.position.z > -11)
         {
             moveSpeed = 0;
-            combatCanvas.SetActive(true);
+            GameObject.Find("Main Camera").GetComponent<TurnBasedCombatStateMachine>().AntiNull();
         }
 
         if (transform.rotation.x > cameraFinish.transform.rotation.x)

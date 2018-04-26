@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TurnBasedCombatStateMachine : MonoBehaviour {
 
@@ -21,12 +22,23 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
     public GameObject player1SpellsMenuCanvas;
     public GameObject player2SpellsMenuCanvas;
     public GameObject player3SpellsMenuCanvas;
-    public GameObject player4SpellMenuCanvas;
+    public GameObject player4SpellsMenuCanvas;
 
     public GameObject player1SelectEnemyCanvas;
+    public GameObject player1SelectEnemyCanvasPage1;
+    public GameObject player1SelectEnemyCanvasPage2;
+
     public GameObject player2SelectEnemyCanvas;
+    public GameObject player2SelectEnemyCanvasPage1;
+    public GameObject player2SelectEnemyCanvasPage2;
+
     public GameObject player3SelectEnemyCanvas;
+    public GameObject player3SelectEnemyCanvasPage1;
+    public GameObject player3SelectEnemyCanvasPage2;
+
     public GameObject player4SelectEnemyCanvas;
+    public GameObject player4SelectEnemyCanvasPage1;
+    public GameObject player4SelectEnemyCanvasPage2;
 
     public GameObject player1TargetUnit;
     public GameObject player2TargetUnit;
@@ -40,53 +52,102 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
     public GameObject enemy5TargetUnit;
     public GameObject enemy6TargetUnit;
 
-    public GameObject calculateDamageTargetUnit;
+    public int player1TotalDamage;
+    public int player1PhysicalDamage;
+    public int player1PhysicalResist;
+    public int player1TotalResist;
+    public int player1TechDamage;
+    public int player1TechResist;
 
-    public int player1Damage;
-    public int player1Resist;
-    public int player2Damage;
-    public int player2Resist;
-    public int player3Damage;
-    public int player3Resist;
-    public int player4Damage;
-    public int player4Resist;
+    public bool player1SpellTaunt;
+    public bool player1DoubleEdge;
+
+    public int player2TotalDamage;
+    public int player2PhysicalDamage;
+    public int player2PhysicalResist;
+    public int player2TotalResist;
+    public int player2TechDamage;
+    public int player2TechResist;
+
+    public int player3TotalDamage;
+    public int player3PhysicalDamage;
+    public int player3PhysicalResist;
+    public int player3TotalResist;
+    public int player3TechDamage;
+    public int player3TechResist;
+
+    public int player4TotalDamage;
+    public int player4PhysicalDamage;
+    public int player4PhysicalResist;
+    public int player4TotalResist;
+    public int player4TechDamage;
+    public int player4TechResist;
 
     public bool player1BasicAttackSelected = false;
     public bool player2BasicAttackSelected = false;
     public bool player3BasicAttackSelected = false;
     public bool player4BasicAttackSelected = false;
 
-
-    public bool spellRektSelected = false;
-
     public bool enemy1ValidUnitSelection;
-    public int enemy1Damage;
-    public int enemy1Resist;
+    public int enemy1TotalDamage;
+    public int enemy1PhysicalDamage;
+    public int enemy1PhysicalResist;
+    public int enemy1TotalResist;
+    public int enemy1TechDamage;
+    public int enemy1TechResist;
 
     public bool enemy2ValidUnitSelection;
-    public int enemy2Damage;
-    public int enemy2Resist;
+    public int enemy2TotalDamage;
+    public int enemy2PhysicalDamage;
+    public int enemy2PhysicalResist;
+    public int enemy2TotalResist;
+    public int enemy2TechDamage;
+    public int enemy2TechResist;
 
     public bool enemy3ValidUnitSelection;
-    public int enemy3Damage;
-    public int enemy3Resist;
+    public int enemy3TotalDamage;
+    public int enemy3PhysicalDamage;
+    public int enemy3PhysicalResist;
+    public int enemy3TotalResist;
+    public int enemy3TechDamage;
+    public int enemy3TechResist;
 
     public bool enemy4ValidUnitSelection;
-    public int enemy4Damage;
-    public int enemy4Resist;
+    public int enemy4TotalDamage;
+    public int enemy4PhysicalDamage;
+    public int enemy4PhysicalResist;
+    public int enemy4TotalResist;
+    public int enemy4TechDamage;
+    public int enemy4TechResist;
 
     public bool enemy5ValidUnitSelection;
-    public int enemy5Damage;
-    public int enemy5Resist;
+    public int enemy5TotalDamage;
+    public int enemy5PhysicalDamage;
+    public int enemy5PhysicalResist;
+    public int enemy5TotalResist;
+    public int enemy5TechDamage;
+    public int enemy5TechResist;
 
     public bool enemy6ValidUnitSelection;
-    public int enemy6Damage;
-    public int enemy6Resist;
+    public int enemy6TotalDamage;
+    public int enemy6PhysicalDamage;
+    public int enemy6PhysicalResist;
+    public int enemy6TotalResist;
+    public int enemy6TechDamage;
+    public int enemy6TechResist;
+
+    public bool enemy1Taunted;
+    public bool enemy2Taunted;
+    public bool enemy3Taunted;
+    public bool enemy4Taunted;
+    public bool enemy5Taunted;
+    public bool enemy6Taunted;
 
     public float timer;
 
     public enum BattleStates
     {
+        NULL,
         START,
         PLAYERCHOICE,
         CALCULATEDAMAGE,
@@ -98,11 +159,16 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public static BattleStates currentState;
 
+    public void AntiNull()
+    {
+        currentState = BattleStates.START;
+    }
+
 	// Use this for initialization
 	void Start () {
 
         timer = 0;
-        currentState = BattleStates.START;
+        currentState = BattleStates.NULL;
 
 	}
 
@@ -129,6 +195,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                 player1BaseMenuCanvas.SetActive(true);
                 player1SelectEnemyCanvas.SetActive(false);
                 player1SpellsMenuCanvas.SetActive(false);
+                EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
                 currentState = BattleStates.PLAYERCHOICE;
 
                 break;
@@ -158,8 +225,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().fallen == false || enemy1TargetUnit.GetComponent<PlayerInformation>().fallen == true)
                 {
-                    enemy1Damage += GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().physicalDamage;
-                    int unitSelected = Random.Range(0, 4);
+                    int unitSelected = Random.Range(1, 5);
+
+                    if (enemy1Taunted == true)
+                    {
+                        unitSelected = 1;
+                    }
 
                     enemy1TargetUnit = GameObject.Find("FriendlyUnit" + unitSelected);
                     if (enemy1TargetUnit.GetComponent<PlayerInformation>().fallen == false)
@@ -175,8 +246,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().fallen == false || enemy2TargetUnit.GetComponent<PlayerInformation>().fallen == true)
                 {
-                    enemy2Damage += GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().physicalDamage;
-                    int unitSelected = Random.Range(0, 4);
+                    int unitSelected = Random.Range(1, 5);
+
+                    if (enemy2Taunted == true)
+                    {
+                        unitSelected = 1;
+                    }
 
                     enemy2TargetUnit = GameObject.Find("FriendlyUnit" + unitSelected);
                     if (enemy2TargetUnit.GetComponent<PlayerInformation>().fallen == false)
@@ -192,8 +267,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().fallen == false || enemy3TargetUnit.GetComponent<PlayerInformation>().fallen == true)
                 {
-                    enemy3Damage += GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().physicalDamage;
-                    int unitSelected = Random.Range(0, 4);
+                    int unitSelected = Random.Range(1, 5);
+
+                    if (enemy3Taunted == true)
+                    {
+                        unitSelected = 1;
+                    }
 
                     enemy3TargetUnit = GameObject.Find("FriendlyUnit" + unitSelected);
                     if (enemy3TargetUnit.GetComponent<PlayerInformation>().fallen == false)
@@ -209,8 +288,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().fallen == false || enemy4TargetUnit.GetComponent<PlayerInformation>().fallen == true)
                 {
-                    enemy4Damage += GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().physicalDamage;
-                    int unitSelected = Random.Range(0, 4);
+                    int unitSelected = Random.Range(1, 5);
+
+                    if (enemy4Taunted == true)
+                    {
+                        unitSelected = 1;
+                    }
 
                     enemy4TargetUnit = GameObject.Find("FriendlyUnit" + unitSelected);
                     if (enemy4TargetUnit.GetComponent<PlayerInformation>().fallen == false)
@@ -226,8 +309,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().fallen == false || enemy5TargetUnit.GetComponent<PlayerInformation>().fallen == true)
                 {
-                    enemy5Damage += GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().physicalDamage;
-                    int unitSelected = Random.Range(0, 4);
+                    int unitSelected = Random.Range(1, 5);
+
+                    if (enemy5Taunted == true)
+                    {
+                        unitSelected = 1;
+                    }
 
                     enemy5TargetUnit = GameObject.Find("FriendlyUnit" + unitSelected);
                     if (enemy5TargetUnit.GetComponent<PlayerInformation>().fallen == false)
@@ -243,8 +330,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().fallen == false || enemy6TargetUnit.GetComponent<PlayerInformation>().fallen == true)
                 {
-                    enemy6Damage += GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().physicalDamage;
-                    int unitSelected = Random.Range(0, 4);
+                    int unitSelected = Random.Range(1, 5);
+
+                    if (enemy6Taunted == true)
+                    {
+                        unitSelected = 1;
+                    }
 
                     enemy6TargetUnit = GameObject.Find("FriendlyUnit" + unitSelected);
                     if (enemy6TargetUnit.GetComponent<PlayerInformation>().fallen == false)
@@ -275,42 +366,126 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 timer += Time.deltaTime;
 
+                player1TotalResist = player1PhysicalResist + player1TechResist;
+                player2TotalResist = player2PhysicalResist + player2TechResist;
+                player3TotalResist = player3PhysicalResist + player3TechResist;
+                player4TotalResist = player4PhysicalResist + player4TechResist;
+
                 if (timer >= 2)
                 {
-                    player1TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player1Damage;
-                    Debug.Log(player1TargetUnit.name + " takes " + player1Damage + " damage!");
-                    player1Damage = 0;
+                    player1PhysicalDamage -= player1TargetUnit.GetComponent<EnemyInformation>().physicalResist;
+                    if (player1PhysicalDamage <= 0)
+                    {
+                        player1PhysicalDamage = 1;
+                    }
+
+                    player1TechDamage -= player1TargetUnit.GetComponent<EnemyInformation>().techResist;
+                    if (player1TechDamage <= 0)
+                    {
+                        player1TechDamage = 1;
+                    }
+
+                    player1TotalDamage = player1PhysicalDamage + player1TechDamage;
+
+                    player1TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player1TotalDamage;
+                    Debug.Log(player1TargetUnit.name + " takes " + player1TotalDamage + " damage!");
+                    player1PhysicalDamage = 0;
+                    player1TechDamage = 0;
+                    player1TotalDamage = 0;
                 }
 
                 if (timer >= 4)
                 {
-                    player2TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player2Damage;
-                    Debug.Log(player2TargetUnit.name + " takes " + player2Damage + " damage!");
-                    player2Damage = 0;
+                    player2PhysicalDamage -= player2TargetUnit.GetComponent<EnemyInformation>().physicalResist;
+                    if (player2PhysicalDamage <= 0)
+                    {
+                        player2PhysicalDamage = 1;
+                    }
+
+                    player2TechDamage -= player2TargetUnit.GetComponent<EnemyInformation>().techResist;
+                    if (player2TechDamage <= 0)
+                    {
+                        player2TechDamage = 1;
+                    }
+
+                    player2TotalDamage = player2PhysicalDamage + player1TechDamage;
+
+                    player2TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player2TotalDamage;
+                    Debug.Log(player2TargetUnit.name + " takes " + player2TotalDamage + " damage!");
+                    player2PhysicalDamage = 0;
+                    player2TechDamage = 0;
+                    player2TotalDamage = 0;
                 }
 
                 if (timer >= 6)
                 {
-                    player3TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player3Damage;
-                    Debug.Log(player3TargetUnit.name + " takes " + player3Damage + " damage!");
-                    player3Damage = 0;
+                    player3PhysicalDamage -= player3TargetUnit.GetComponent<EnemyInformation>().physicalResist;
+                    if (player3PhysicalDamage <= 0)
+                    {
+                        player3PhysicalDamage = 1;
+                    }
+
+                    player3TechDamage -= player3TargetUnit.GetComponent<EnemyInformation>().techResist;
+                    if (player3TechDamage <= 0)
+                    {
+                        player3TechDamage = 1;
+                    }
+
+                    player3TotalDamage = player3PhysicalDamage + player3TechDamage;
+
+                    player3TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player3TotalDamage;
+                    Debug.Log(player3TargetUnit.name + " takes " + player3TotalDamage + " damage!");
+                    player3PhysicalDamage = 0;
+                    player3TechDamage = 0;
+                    player3TotalDamage = 0;
                 }
 
                 if (timer >= 8)
                 {
-                    player4TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player4Damage;
-                    Debug.Log(player1TargetUnit.name + " takes " + player4Damage + " damage!");
-                    player4Damage = 0;
+                    player4PhysicalDamage -= player4TargetUnit.GetComponent<EnemyInformation>().physicalResist;
+                    if (player4PhysicalDamage <= 0)
+                    {
+                        player4PhysicalDamage = 1;
+                    }
+
+                    player4TechDamage -= player4TargetUnit.GetComponent<EnemyInformation>().techResist;
+                    if (player4TechDamage <= 0)
+                    {
+                        player4TechDamage = 1;
+                    }
+
+                    player4TotalDamage = player4PhysicalDamage + player4TechDamage;
+
+                    player4TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player4TotalDamage;
+                    Debug.Log(player4TargetUnit.name + " takes " + player4TotalDamage + " damage!");
+                    player4PhysicalDamage = 0;
+                    player4TechDamage = 0;
+                    player4TotalDamage = 0;
                 }
 
                 if (timer >= 10)
                 {
-                    if (GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().fallen == false)
+                    if (GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().fallen == false && enemy1TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
+                        enemy1PhysicalDamage = GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().physicalDamage - enemy1TargetUnit.GetComponent<PlayerInformation>().physicalResist;
+                        if (enemy1PhysicalDamage <= 0)
+                        {
+                            enemy1PhysicalDamage = 1;
+                        }
+
+                        if (enemy1TechDamage <= 0)
+                        {
+                            enemy1TechDamage = 1;
+                        }
+
+                        enemy1TotalDamage = enemy1PhysicalDamage + enemy1TechDamage;
+
                         GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().attacks = true;
-                        enemy1TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy1Damage;
-                        Debug.Log(enemy1TargetUnit.name + " takes " + enemy1Damage + " damage!");
-                        enemy1Damage = 0;
+                        enemy1TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy1TotalDamage;
+                        Debug.Log(enemy1TargetUnit.name + " takes " + enemy1TotalDamage + " damage!");
+                        enemy1PhysicalDamage = 0;
+                        enemy1TechDamage = 0;
+                        enemy1TotalDamage = 0;
                     }
                     else
                     {
@@ -320,12 +495,27 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 12)
                 {
-                    if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().fallen == false)
+                    if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().fallen == false && enemy2TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
+                        enemy2PhysicalDamage = GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().physicalDamage - enemy2TargetUnit.GetComponent<PlayerInformation>().physicalResist;
+                        if (enemy2PhysicalDamage <= 0)
+                        {
+                            enemy2PhysicalDamage = 1;
+                        }
+
+                        if (enemy2TechDamage <= 0)
+                        {
+                            enemy2TechDamage = 1;
+                        }
+
+                        enemy2TotalDamage = enemy2PhysicalDamage + enemy2TechDamage;
+
                         GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().attacks = true;
-                        enemy2TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy2Damage;
-                        Debug.Log(enemy2TargetUnit.name + " takes " + enemy2Damage + " damage!");
-                        enemy1Damage = 0;
+                        enemy2TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy2TotalDamage;
+                        Debug.Log(enemy2TargetUnit.name + " takes " + enemy2TotalDamage + " damage!");
+                        enemy2PhysicalDamage = 0;
+                        enemy2TechDamage = 0;
+                        enemy2TotalDamage = 0;
                     }
                     else
                     {
@@ -335,12 +525,27 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 14)
                 {
-                    if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().fallen == false)
+                    if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().fallen == false && enemy3TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
+                        enemy3PhysicalDamage = GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().physicalDamage - enemy3TargetUnit.GetComponent<PlayerInformation>().physicalResist;
+                        if (enemy3PhysicalDamage <= 0)
+                        {
+                            enemy3PhysicalDamage = 1;
+                        }
+
+                        if (enemy3TechDamage <= 0)
+                        {
+                            enemy3TechDamage = 1;
+                        }
+
+                        enemy3TotalDamage = enemy3PhysicalDamage + enemy3TechDamage;
+
                         GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().attacks = true;
-                        enemy3TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy3Damage;
-                        Debug.Log(enemy3TargetUnit.name + " takes " + enemy3Damage + " damage!");
-                        enemy1Damage = 0;
+                        enemy3TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy3TotalDamage;
+                        Debug.Log(enemy3TargetUnit.name + " takes " + enemy3TotalDamage + " damage!");
+                        enemy3PhysicalDamage = 0;
+                        enemy3TechDamage = 0;
+                        enemy3TotalDamage = 0;
                     }
                     else
                     {
@@ -350,12 +555,27 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 16)
                 {
-                    if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().fallen == false)
+                    if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().fallen == false && enemy4TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
+                        enemy4PhysicalDamage = GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().physicalDamage - enemy4TargetUnit.GetComponent<PlayerInformation>().physicalResist;
+                        if (enemy4PhysicalDamage <= 0)
+                        {
+                            enemy4PhysicalDamage = 1;
+                        }
+
+                        if (enemy4TechDamage <= 0)
+                        {
+                            enemy4TechDamage = 1;
+                        }
+
+                        enemy4TotalDamage = enemy4PhysicalDamage + enemy4TechDamage;
+
                         GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().attacks = true;
-                        enemy4TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy4Damage;
-                        Debug.Log(enemy4TargetUnit.name + " takes " + enemy4Damage + " damage!");
-                        enemy1Damage = 0;
+                        enemy4TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy4TotalDamage;
+                        Debug.Log(enemy4TargetUnit.name + " takes " + enemy4TotalDamage + " damage!");
+                        enemy4PhysicalDamage = 0;
+                        enemy4TechDamage = 0;
+                        enemy4TotalDamage = 0;
                     }
                     else
                     {
@@ -365,12 +585,27 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 18)
                 {
-                    if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().fallen == false)
+                    if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().fallen == false && enemy5TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
+                        enemy5PhysicalDamage = GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().physicalDamage - enemy5TargetUnit.GetComponent<PlayerInformation>().physicalResist;
+                        if (enemy5PhysicalDamage <= 0)
+                        {
+                            enemy5PhysicalDamage = 1;
+                        }
+
+                        if (enemy5TechDamage <= 0)
+                        {
+                            enemy5TechDamage = 1;
+                        }
+
+                        enemy5TotalDamage = enemy5PhysicalDamage + enemy5TechDamage;
+
                         GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().attacks = true;
-                        enemy5TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy5Damage;
-                        Debug.Log(enemy5TargetUnit.name + " takes " + enemy5Damage + " damage!");
-                        enemy5Damage = 0;
+                        enemy5TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy5TotalDamage;
+                        Debug.Log(enemy5TargetUnit.name + " takes " + enemy5TotalDamage + " damage!");
+                        enemy5PhysicalDamage = 0;
+                        enemy5TechDamage = 0;
+                        enemy5TotalDamage = 0;
                     }
                     else
                     {
@@ -380,17 +615,55 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 20)
                 {
-                    if (GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().fallen == false)
+                    if (GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().fallen == false && enemy6TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
+                        enemy6PhysicalDamage = GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().physicalDamage - enemy6TargetUnit.GetComponent<PlayerInformation>().physicalResist;
+                        if (enemy6PhysicalDamage <= 0)
+                        {
+                            enemy6PhysicalDamage = 1;
+                        }
+
+                        if (enemy6TechDamage <= 0)
+                        {
+                            enemy6TechDamage = 1;
+                        }
+
+                        enemy6TotalDamage = enemy6PhysicalDamage + enemy6TechDamage;
+
                         GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().attacks = true;
-                        enemy6TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy6Damage;
-                        Debug.Log(enemy6TargetUnit.name + " takes " + enemy6Damage + " damage!");
-                        enemy6Damage = 0;
+                        enemy6TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy6TotalDamage;
+                        Debug.Log(enemy6TargetUnit.name + " takes " + enemy6TotalDamage + " damage!");
+                        enemy6PhysicalDamage = 0;
+                        enemy6TechDamage = 0;
+                        enemy6TotalDamage = 0;
                     }
                     else
                     {
                         timer += 2;
                     }
+
+                    player1TotalResist = 0;
+                    player1PhysicalResist = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalResist;
+                    player1TechResist = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().techResist;
+
+                    player2TotalResist = 0;
+                    player2PhysicalResist = GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().physicalResist;
+                    player2TechResist = GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().techResist;
+
+                    player3TotalResist = 0;
+                    player3PhysicalResist = GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().physicalResist;
+                    player3TechResist = GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().techResist;
+
+                    player4TotalResist = 0;
+                    player4PhysicalResist = GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().physicalResist;
+                    player4TechResist = GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().techResist;
+
+                    enemy1Taunted = false;
+                    enemy2Taunted = false;
+                    enemy3Taunted = false;
+                    enemy4Taunted = false;
+                    enemy5Taunted = false;
+                    enemy6Taunted = false;
 
                     timer = 0;
                     currentState = BattleStates.START;
@@ -474,35 +747,88 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
     {
         player1BaseMenuCanvas.SetActive(false);
         player1BasicAttackSelected = true;
-        player1Damage += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalDamage * 1;
+        player1PhysicalDamage += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalDamage * 1;
         player1SelectEnemyCanvas.SetActive(true);
+        player1SelectEnemyCanvasPage1.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find ("Enemy1"), new BaseEventData (EventSystem.current));
+    }
+
+    public void OnPlayer1ClickEnemySelectCanvasPage1Down()
+    {
+        player1SelectEnemyCanvasPage1.SetActive(false);
+        player1SelectEnemyCanvasPage2.SetActive(true);
+    }
+
+    public void OnPlayer1ClickEnemySelectCanvasPage2Up()
+    {
+        player1SelectEnemyCanvasPage2.SetActive(false);
+        player1SelectEnemyCanvasPage1.SetActive(true);
     }
 
     public void OnPlayer2ClickAttack()
     {
         player2BaseMenuCanvas.SetActive(false);
         player2BasicAttackSelected = true;
-        player2Damage += GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().physicalDamage * 1;
+        player2PhysicalDamage += GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().physicalDamage * 1;
         player2SelectEnemyCanvas.SetActive(true);
+        player2SelectEnemyCanvasPage1.SetActive(true);
+    }
+
+    public void OnPlayer2ClickEnemySelectCanvasPage1Down()
+    {
+        player2SelectEnemyCanvasPage1.SetActive(false);
+        player2SelectEnemyCanvasPage2.SetActive(true);
+    }
+
+    public void OnPlayer2ClickEnemySelectCanvasPage2Up()
+    {
+        player2SelectEnemyCanvasPage2.SetActive(false);
+        player2SelectEnemyCanvasPage1.SetActive(true);
     }
 
     public void OnPlayer3ClickAttack()
     {
         player3BaseMenuCanvas.SetActive(false);
         player3BasicAttackSelected = true;
-        player3Damage += GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().physicalDamage * 1;
+        player3PhysicalDamage += GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().physicalDamage * 1;
         player3SelectEnemyCanvas.SetActive(true);
+        player3SelectEnemyCanvasPage1.SetActive(true);
+    }
+
+    public void OnPlayer3ClickEnemySelectCanvasPage1Down()
+    {
+        player3SelectEnemyCanvasPage1.SetActive(false);
+        player3SelectEnemyCanvasPage2.SetActive(true);
+    }
+
+    public void OnPlayer3ClickEnemySelectCanvasPage2Up()
+    {
+        player3SelectEnemyCanvasPage2.SetActive(false);
+        player3SelectEnemyCanvasPage1.SetActive(true);
     }
 
     public void OnPlayer4ClickAttack()
     {
         player4BaseMenuCanvas.SetActive(false);
         player4BasicAttackSelected = true;
-        player4Damage += GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().physicalDamage * 1;
+        player4PhysicalDamage += GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().physicalDamage * 1;
         player4SelectEnemyCanvas.SetActive(true);
+        player4SelectEnemyCanvasPage1.SetActive(true);
     }
 
-    // PlayerClickSpells buttons
+    public void OnPlayer4ClickEnemySelectCanvasPage1Down()
+    {
+        player4SelectEnemyCanvasPage1.SetActive(false);
+        player4SelectEnemyCanvasPage2.SetActive(true);
+    }
+
+    public void OnPlayer4ClickEnemySelectCanvasPage2Up()
+    {
+        player4SelectEnemyCanvasPage2.SetActive(false);
+        player4SelectEnemyCanvasPage1.SetActive(true);
+    }
+
+    // Player1ClickSpells buttons
 
     public void OnPlayer1ClickSpells()
     {
@@ -511,21 +837,127 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player1SpellsMenuCanvas.SetActive(true);
     }
 
-    public void OnPlayer1ClickSpellRekt()
+    public void OnPlayer1ClickSpellTaunt()
     {
         player1SpellsMenuCanvas.SetActive(false);
-        spellRektSelected = true;
 
-        player1Damage += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalDamage * 2;
-        player1Damage += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().techDamage * 2;
+        int tauntSuccess = Random.Range(1, 7);
+
+        if (tauntSuccess == 1)
+        {
+            enemy1Taunted = true;
+        }
+
+        else if (tauntSuccess == 2)
+        {
+            enemy1Taunted = true;
+            enemy2Taunted = true;
+        }
+
+        else if (tauntSuccess == 3)
+        {
+            enemy1Taunted = true;
+            enemy2Taunted = true;
+            enemy3Taunted = true;
+        }
+
+        else if (tauntSuccess == 4)
+        {
+            enemy1Taunted = true;
+            enemy2Taunted = true;
+            enemy3Taunted = true;
+            enemy4Taunted = true;
+        }
+
+        else if (tauntSuccess == 5)
+        {
+            enemy1Taunted = true;
+            enemy2Taunted = true;
+            enemy3Taunted = true;
+            enemy4Taunted = true;
+            enemy5Taunted = true;
+        }
+
+        else
+        {
+            enemy1Taunted = true;
+            enemy2Taunted = true;
+            enemy3Taunted = true;
+            enemy4Taunted = true;
+            enemy5Taunted = true;
+            enemy6Taunted = true;
+        }
+
+        player1PhysicalResist += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalResist * 2;
+        player1TechResist += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().techResist * 1;
+
+        
 
         player1SelectEnemyCanvas.SetActive(true);
     }
 
+    // Player2ClickSpells buttons
+
+    public void OnPlayer2ClickSpells()
+    {
+        player2BaseMenuCanvas.SetActive(false);
+
+        player2SpellsMenuCanvas.SetActive(true);
+    }
+
+    // Player3ClickSpells buttons
+
+    public void OnPlayer3ClickSpells()
+    {
+        player3BaseMenuCanvas.SetActive(false);
+
+        player3SpellsMenuCanvas.SetActive(true);
+    }
+
+    // Player4ClickSpells buttons
+
+    public void OnPlayer4ClickSpells()
+    {
+        player4BaseMenuCanvas.SetActive(false);
+
+        player4SpellsMenuCanvas.SetActive(true);
+    }
+
+    // PlayersClickGuard
+
     public void OnPlayer1ClickGuard()
     {
-        player1Resist += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalResist * 1;
+        player1PhysicalResist += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalResist * 1;
+        player1TechResist += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().techResist * 1;
+
         player1BaseMenuCanvas.SetActive(false);
+        currentState = BattleStates.ENEMYCHOICE;
+    }
+
+    public void OnPlayer2ClickGuard()
+    {
+        player2PhysicalResist += GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().physicalResist * 1;
+        player2TechResist += GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().techResist * 1;
+
+        player2BaseMenuCanvas.SetActive(false);
+        currentState = BattleStates.ENEMYCHOICE;
+    }
+
+    public void OnPlayer3ClickGuard()
+    {
+        player3PhysicalResist += GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().physicalResist * 1;
+        player3TechResist += GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().techResist * 1;
+
+        player3BaseMenuCanvas.SetActive(false);
+        currentState = BattleStates.ENEMYCHOICE;
+    }
+
+    public void OnPlayer4ClickGuard()
+    {
+        player4PhysicalResist += GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().physicalResist * 1;
+        player4TechResist += GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().techResist * 1;
+
+        player4BaseMenuCanvas.SetActive(false);
         currentState = BattleStates.ENEMYCHOICE;
     }
 
