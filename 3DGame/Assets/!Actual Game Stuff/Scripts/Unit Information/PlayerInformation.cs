@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerInformation : MonoBehaviour {
 
+    //Player level related stats
     public int playerLevel;
     public string playerName;
     public int currentEXP;
     public int neededEXP;
 
+    //Player stats
     public int healthPointsMax;
     public int healthPointsCurrent;
     public int techPointsMax;
@@ -17,6 +19,10 @@ public class PlayerInformation : MonoBehaviour {
     public int physicalResist;
     public int techDamage;
     public int techResist;
+
+    //Is the player poisoned?
+    public bool poisoned;
+    public int poisonTimer;
 
     public bool fallen = false;
 

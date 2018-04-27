@@ -6,11 +6,17 @@ public class EnemyInformation : MonoBehaviour {
 
     Animator anim;
 
+    //Enemy stats
     public int currentHealthPoints;
     public int physicalDamage;
     public int techDamage;
     public int physicalResist;
     public int techResist;
+
+    //Is the enemy poisoned?
+    public bool poisoned;
+    public int poisonTimer;
+    public int poisonDamage;
 
     public bool fallen = false;
     public bool attacks = false;
@@ -19,11 +25,18 @@ public class EnemyInformation : MonoBehaviour {
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
+        if (poisonTimer <= 0)
+        {
+            poisoned = false;
+            poisonTimer = 0;
+            poisonDamage = 0;
+        }
+
         if (currentHealthPoints <= 0)
         {
             fallen = true;
@@ -34,6 +47,11 @@ public class EnemyInformation : MonoBehaviour {
         {
             anim.SetBool("Attacks", true);
             attacks = false;
+
+        }
+        else if (attacks == false)
+        {
+            anim.SetBool("Attacks", false);
         }
     }
 }
