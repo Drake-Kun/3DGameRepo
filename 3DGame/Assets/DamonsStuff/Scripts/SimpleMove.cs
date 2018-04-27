@@ -22,9 +22,21 @@ public class SimpleMove : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Oof");
-        if (other.gameObject.tag == "Interactable")
+        if (other.gameObject.tag == "Interactable" && !other.GetComponent<Talking>().instantStart)
         {
             showMe.SetActive(true);
+        } else if (other.GetComponent<Talking>().instantStart)
+        {
+            talkToMe.SetActive(true);
+            showMe.SetActive(false);
+            talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
+            talkToMe.GetComponentInChildren<Typing>().Restart();
+            if (other.GetComponentInChildren<Talking>().semiCutscene)
+            {
+                GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
+            }
+            //Debug.Log("Atttaaaaacccckckkkk");
+            talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
         }
     }
     private void OnTriggerStay(Collider other)

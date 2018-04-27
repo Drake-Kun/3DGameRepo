@@ -7,9 +7,10 @@ public class Talking : MonoBehaviour {
     public bool semiCutscene = false;
     public GameObject changeCamera;
     public bool combat = false;
+    public bool instantStart = false;
     // Use this for initialization
     void Start () {
-        combat = true;
+        
 	}
 	
 	// Update is called once per frame
