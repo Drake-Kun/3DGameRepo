@@ -25,20 +25,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
     public GameObject player4SpellsMenuCanvas;
 
     public GameObject player1SelectEnemyCanvas;
-    public GameObject player1SelectEnemyCanvasPage1;
-    public GameObject player1SelectEnemyCanvasPage2;
 
     public GameObject player2SelectEnemyCanvas;
-    public GameObject player2SelectEnemyCanvasPage1;
-    public GameObject player2SelectEnemyCanvasPage2;
 
     public GameObject player3SelectEnemyCanvas;
-    public GameObject player3SelectEnemyCanvasPage1;
-    public GameObject player3SelectEnemyCanvasPage2;
 
     public GameObject player4SelectEnemyCanvas;
-    public GameObject player4SelectEnemyCanvasPage1;
-    public GameObject player4SelectEnemyCanvasPage2;
 
     public GameObject player1TargetUnit;
     public GameObject player2TargetUnit;
@@ -687,8 +679,11 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 10 && enemy1TurnReady)
                 {
+                    enemy1TurnReady = false;
+                    Debug.Log("Enemy1s turn");
                     if (GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().fallen == false && enemy1TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
+                        Debug.Log("Enemy1 attacks.");
                         enemy1PhysicalDamage = GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().physicalDamage - enemy1TargetUnit.GetComponent<PlayerInformation>().physicalResist;
                         if (enemy1PhysicalDamage <= 0)
                         {
@@ -708,7 +703,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                         enemy1PhysicalDamage = 0;
                         enemy1TechDamage = 0;
                         enemy1TotalDamage = 0;
-                        enemy1TurnReady = false;
 
                         if (GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().poisoned)
                         {
@@ -719,11 +713,13 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     else
                     {
                         timer += 2;
+                        Debug.Log("Enemy1 is dead.");
                     }
                 }
 
                 if (timer >= 12 && enemy2TurnReady)
                 {
+                    enemy2TurnReady = false;
                     if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().fallen == false && enemy2TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
                         enemy2PhysicalDamage = GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().physicalDamage - enemy2TargetUnit.GetComponent<PlayerInformation>().physicalResist;
@@ -745,7 +741,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                         enemy2PhysicalDamage = 0;
                         enemy2TechDamage = 0;
                         enemy2TotalDamage = 0;
-                        enemy2TurnReady = false;
 
                         if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().poisoned)
                         {
@@ -761,6 +756,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 14 && enemy3TurnReady)
                 {
+                    enemy3TurnReady = false;
                     if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().fallen == false && enemy3TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
                         enemy3PhysicalDamage = GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().physicalDamage - enemy3TargetUnit.GetComponent<PlayerInformation>().physicalResist;
@@ -782,7 +778,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                         enemy3PhysicalDamage = 0;
                         enemy3TechDamage = 0;
                         enemy3TotalDamage = 0;
-                        enemy3TurnReady = false;
 
                         if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().poisoned)
                         {
@@ -798,6 +793,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 16 && enemy4TurnReady)
                 {
+                    enemy4TurnReady = false;
                     if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().fallen == false && enemy4TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
                         enemy4PhysicalDamage = GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().physicalDamage - enemy4TargetUnit.GetComponent<PlayerInformation>().physicalResist;
@@ -819,7 +815,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                         enemy4PhysicalDamage = 0;
                         enemy4TechDamage = 0;
                         enemy4TotalDamage = 0;
-                        enemy4TurnReady = false;
 
                         if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().poisoned)
                         {
@@ -835,6 +830,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 18 && enemy5TurnReady)
                 {
+                    enemy5TurnReady = false;
                     if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().fallen == false && enemy5TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
                         enemy5PhysicalDamage = GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().physicalDamage - enemy5TargetUnit.GetComponent<PlayerInformation>().physicalResist;
@@ -856,7 +852,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                         enemy5PhysicalDamage = 0;
                         enemy5TechDamage = 0;
                         enemy5TotalDamage = 0;
-                        enemy5TurnReady = false;
 
                         if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().poisoned)
                         {
@@ -872,6 +867,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 if (timer >= 20 && enemy6TurnReady)
                 {
+                    enemy6TurnReady = false;
                     if (GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().fallen == false && enemy6TargetUnit.GetComponent<PlayerInformation>().fallen == false)
                     {
                         enemy6PhysicalDamage = GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().physicalDamage - enemy6TargetUnit.GetComponent<PlayerInformation>().physicalResist;
@@ -893,7 +889,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                         enemy6PhysicalDamage = 0;
                         enemy6TechDamage = 0;
                         enemy6TotalDamage = 0;
-                        enemy6TurnReady = false;
 
                         if (GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().poisoned)
                         {
@@ -908,6 +903,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                     if (timer >= 22)
                     {
+                        Debug.Log("Start next turn.");
                         player1TotalResist = 0;
                         player1PhysicalResist = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalResist;
                         player1TechResist = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().techResist;
@@ -1020,22 +1016,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player1BasicAttackSelected = true;
         player1PhysicalDamage += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().physicalDamage * 1;
         player1SelectEnemyCanvas.SetActive(true);
-        player1SelectEnemyCanvasPage1.SetActive(true);
         EventSystem.current.SetSelectedGameObject(GameObject.Find ("Enemy1"), new BaseEventData (EventSystem.current));
-    }
-
-    public void OnPlayer1ClickEnemySelectCanvasPage1Down()
-    {
-        player1SelectEnemyCanvasPage1.SetActive(false);
-        player1SelectEnemyCanvasPage2.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy5"), new BaseEventData(EventSystem.current));
-    }
-
-    public void OnPlayer1ClickEnemySelectCanvasPage2Up()
-    {
-        player1SelectEnemyCanvasPage2.SetActive(false);
-        player1SelectEnemyCanvasPage1.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy4"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer2ClickAttack()
@@ -1044,21 +1025,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2BasicAttackSelected = true;
         player2PhysicalDamage += GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().physicalDamage * 1;
         player2SelectEnemyCanvas.SetActive(true);
-        player2SelectEnemyCanvasPage1.SetActive(true);
-    }
-
-    public void OnPlayer2ClickEnemySelectCanvasPage1Down()
-    {
-        player2SelectEnemyCanvasPage1.SetActive(false);
-        player2SelectEnemyCanvasPage2.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy5"), new BaseEventData(EventSystem.current));
-    }
-
-    public void OnPlayer2ClickEnemySelectCanvasPage2Up()
-    {
-        player2SelectEnemyCanvasPage2.SetActive(false);
-        player2SelectEnemyCanvasPage1.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy4"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer3ClickAttack()
@@ -1067,21 +1033,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player3BasicAttackSelected = true;
         player3PhysicalDamage += GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().physicalDamage * 1;
         player3SelectEnemyCanvas.SetActive(true);
-        player3SelectEnemyCanvasPage1.SetActive(true);
-    }
-
-    public void OnPlayer3ClickEnemySelectCanvasPage1Down()
-    {
-        player3SelectEnemyCanvasPage1.SetActive(false);
-        player3SelectEnemyCanvasPage2.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy5"), new BaseEventData(EventSystem.current));
-    }
-
-    public void OnPlayer3ClickEnemySelectCanvasPage2Up()
-    {
-        player3SelectEnemyCanvasPage2.SetActive(false);
-        player3SelectEnemyCanvasPage1.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy4"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer4ClickAttack()
@@ -1090,21 +1041,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4BasicAttackSelected = true;
         player4PhysicalDamage += GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().physicalDamage * 1;
         player4SelectEnemyCanvas.SetActive(true);
-        player4SelectEnemyCanvasPage1.SetActive(true);
-    }
-
-    public void OnPlayer4ClickEnemySelectCanvasPage1Down()
-    {
-        player4SelectEnemyCanvasPage1.SetActive(false);
-        player4SelectEnemyCanvasPage2.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy5"), new BaseEventData(EventSystem.current));
-    }
-
-    public void OnPlayer4ClickEnemySelectCanvasPage2Up()
-    {
-        player4SelectEnemyCanvasPage2.SetActive(false);
-        player4SelectEnemyCanvasPage1.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy4"), new BaseEventData(EventSystem.current));
     }
 
     // Player1ClickSpells buttons
@@ -1189,7 +1125,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2SpellsMenuCanvas.SetActive(false);
         player2PhysicalDamage += GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().physicalDamage;
         player2SelectEnemyCanvas.SetActive(true);
-        player2SelectEnemyCanvasPage1.SetActive(true);
         EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy1"), new BaseEventData(EventSystem.current));
     }
 
@@ -1277,6 +1212,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2SpellsMenuCanvas.SetActive(false);
         player2SelectEnemyCanvas.SetActive(false);
         player1TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer1ClickEnemy2Button()
@@ -1292,6 +1228,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2SpellsMenuCanvas.SetActive(false);
         player2SelectEnemyCanvas.SetActive(false);
         player1TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer1ClickEnemy3Button()
@@ -1307,6 +1244,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2SpellsMenuCanvas.SetActive(false);
         player2SelectEnemyCanvas.SetActive(false);
         player1TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer1ClickEnemy4Button()
@@ -1322,6 +1260,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2SpellsMenuCanvas.SetActive(false);
         player2SelectEnemyCanvas.SetActive(false);
         player1TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer1ClickEnemy5Button()
@@ -1337,6 +1276,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2SpellsMenuCanvas.SetActive(false);
         player2SelectEnemyCanvas.SetActive(false);
         player1TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer1ClickEnemy6Button()
@@ -1352,6 +1292,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2SpellsMenuCanvas.SetActive(false);
         player2SelectEnemyCanvas.SetActive(false);
         player1TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     // Player2SelectEnemy buttons
@@ -1369,6 +1310,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player3SpellsMenuCanvas.SetActive(false);
         player3SelectEnemyCanvas.SetActive(false);
         player2TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer2ClickEnemy2Button()
@@ -1384,6 +1326,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player3SpellsMenuCanvas.SetActive(false);
         player3SelectEnemyCanvas.SetActive(false);
         player2TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer2ClickEnemy3Button()
@@ -1399,6 +1342,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player3SpellsMenuCanvas.SetActive(false);
         player3SelectEnemyCanvas.SetActive(false);
         player2TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer2ClickEnemy4Button()
@@ -1414,6 +1358,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player3SpellsMenuCanvas.SetActive(false);
         player3SelectEnemyCanvas.SetActive(false);
         player2TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer2ClickEnemy5Button()
@@ -1429,6 +1374,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player3SpellsMenuCanvas.SetActive(false);
         player3SelectEnemyCanvas.SetActive(false);
         player2TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer2ClickEnemy6Button()
@@ -1444,6 +1390,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player3SpellsMenuCanvas.SetActive(false);
         player3SelectEnemyCanvas.SetActive(false);
         player2TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     // Player3SelectEnemy buttons
@@ -1461,6 +1408,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4SpellsMenuCanvas.SetActive(false);
         player4SelectEnemyCanvas.SetActive(false);
         player3TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer3ClickEnemy2Button()
@@ -1476,6 +1424,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4SpellsMenuCanvas.SetActive(false);
         player4SelectEnemyCanvas.SetActive(false);
         player3TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer3ClickEnemy3Button()
@@ -1491,6 +1440,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4SpellsMenuCanvas.SetActive(false);
         player4SelectEnemyCanvas.SetActive(false);
         player3TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer3ClickEnemy4Button()
@@ -1506,6 +1456,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4SpellsMenuCanvas.SetActive(false);
         player4SelectEnemyCanvas.SetActive(false);
         player3TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     public void OnPlayer3ClickEnemy5Button()
@@ -1521,6 +1472,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4SpellsMenuCanvas.SetActive(false);
         player4SelectEnemyCanvas.SetActive(false);
         player3TurnReady = true;
+
     }
 
     public void OnPlayer3ClickEnemy6Button()
