@@ -9,6 +9,9 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public GameObject combatCanvas;
 
+    public GameObject damageCalculationsCanvas;
+    public GameObject damageCalculationsText;
+
     public GameObject player1CombatCanvas;
     public GameObject player2CombatCanvas;
     public GameObject player3CombatCanvas;
@@ -215,6 +218,10 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public float timer;
 
+    // We need this so we don't repeat things unecessarily
+
+    public bool damageCalculationStarted;
+
     public enum BattleStates
     {
         NULL,
@@ -232,6 +239,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
     public void AntiNull()
     {
         currentState = BattleStates.START;
+        damageCalculationStarted = false;
     }
 
 	// Use this for initialization
@@ -562,12 +570,19 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
             case (BattleStates.CALCULATEDAMAGE):
 
-                timer += Time.deltaTime;
+                if (damageCalculationStarted == false)
+                {
+                    damageCalculationsText.GetComponent<Text>().text = "";
 
-                player1TotalResist = player1PhysicalResist + player1TechResist;
-                player2TotalResist = player2PhysicalResist + player2TechResist;
-                player3TotalResist = player3PhysicalResist + player3TechResist;
-                player4TotalResist = player4PhysicalResist + player4TechResist;
+                    player1TotalResist = player1PhysicalResist + player1TechResist;
+                    player2TotalResist = player2PhysicalResist + player2TechResist;
+                    player3TotalResist = player3PhysicalResist + player3TechResist;
+                    player4TotalResist = player4PhysicalResist + player4TechResist;
+
+                    damageCalculationStarted = true;
+                }
+
+                timer += Time.deltaTime;
 
                 if (timer >= 2 && player1TurnReady)
                 {
@@ -586,7 +601,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player1TotalDamage = player1PhysicalDamage + player1TechDamage;
 
                     player1TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player1TotalDamage;
-                    Debug.Log(player1TargetUnit.name + " takes " + player1TotalDamage + " damage!");
+                    damageCalculationsText.GetComponent<Text>().text = player1TargetUnit.name + " takes " + player1TotalDamage + " damage!";
                     player1PhysicalDamage = 0;
                     player1TechDamage = 0;
                     player1TotalDamage = 0;
@@ -611,6 +626,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                     if (player2SpellPoison)
                     {
+                        damageCalculationsText.GetComponent<Text>().text = player2TargetUnit.name + " is now poisoned!";
                         int poisonDamage = player2TechDamage - player2TargetUnit.GetComponent<EnemyInformation>().techResist;
                         if (poisonDamage <= 0)
                         {
@@ -622,7 +638,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     }
 
                     player2TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player2TotalDamage;
-                    Debug.Log(player2TargetUnit.name + " takes " + player2TotalDamage + " damage!");
+                    damageCalculationsText.GetComponent<Text>().text = player2TargetUnit.name + " takes " + player2TotalDamage + " damage!";
                     player2PhysicalDamage = 0;
                     player2TechDamage = 0;
                     player2TotalDamage = 0;
@@ -646,7 +662,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player3TotalDamage = player3PhysicalDamage + player3TechDamage;
 
                     player3TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player3TotalDamage;
-                    Debug.Log(player3TargetUnit.name + " takes " + player3TotalDamage + " damage!");
+                    damageCalculationsText.GetComponent<Text>().text = player3TargetUnit.name + " takes " + player3TotalDamage + " damage!";
                     player3PhysicalDamage = 0;
                     player3TechDamage = 0;
                     player3TotalDamage = 0;
@@ -670,7 +686,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player4TotalDamage = player4PhysicalDamage + player4TechDamage;
 
                     player4TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player4TotalDamage;
-                    Debug.Log(player4TargetUnit.name + " takes " + player4TotalDamage + " damage!");
+                    damageCalculationsText.GetComponent<Text>().text = player4TargetUnit.name + " takes " + player4TotalDamage + " damage!";
                     player4PhysicalDamage = 0;
                     player4TechDamage = 0;
                     player4TotalDamage = 0;
@@ -1047,8 +1063,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public void OnPlayer1ClickSpells()
     {
-        player1BaseMenuCanvas.SetActive(false);
-
         player1SpellsMenuCanvas.SetActive(true);
     }
 
@@ -1115,8 +1129,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public void OnPlayer2ClickSpells()
     {
-        player2BaseMenuCanvas.SetActive(false);
-
         player2SpellsMenuCanvas.SetActive(true);
     }
 
@@ -1132,8 +1144,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public void OnPlayer3ClickSpells()
     {
-        player3BaseMenuCanvas.SetActive(false);
-
         player3SpellsMenuCanvas.SetActive(true);
     }
 
@@ -1141,8 +1151,6 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public void OnPlayer4ClickSpells()
     {
-        player4BaseMenuCanvas.SetActive(false);
-
         player4SpellsMenuCanvas.SetActive(true);
     }
 
@@ -1154,6 +1162,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player1TechResist += GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().techResist * 1;
 
         player1BaseMenuCanvas.SetActive(false);
+        player2BaseMenuCanvas.SetActive(true);
         currentState = BattleStates.ENEMYCHOICE;
     }
 
@@ -1163,6 +1172,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player2TechResist += GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().techResist * 1;
 
         player2BaseMenuCanvas.SetActive(false);
+        player3BaseMenuCanvas.SetActive(true);
         currentState = BattleStates.ENEMYCHOICE;
     }
 
@@ -1172,6 +1182,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player3TechResist += GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().techResist * 1;
 
         player3BaseMenuCanvas.SetActive(false);
+        player4BaseMenuCanvas.SetActive(true);
         currentState = BattleStates.ENEMYCHOICE;
     }
 
@@ -1181,6 +1192,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4TechResist += GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().techResist * 1;
 
         player4BaseMenuCanvas.SetActive(false);
+
         currentState = BattleStates.ENEMYCHOICE;
     }
 

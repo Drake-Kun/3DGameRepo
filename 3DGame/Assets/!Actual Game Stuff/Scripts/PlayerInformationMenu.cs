@@ -34,25 +34,25 @@ public class PlayerInformationMenu : MonoBehaviour {
         player1HealthValueMax = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().healthPointsMax;
         player1HealthValue = GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().healthPointsCurrent;
         Player1NameText.GetComponent<Text>().text = player1Name;
-        Player1HealthText.GetComponent<Text>().text = player1HealthValue + "/" + player1HealthValueMax;
+        Player1HealthText.GetComponent<Text>().text = player1HealthValue + "   l   " + player1HealthValueMax;
 
         player2Name = GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().playerName;
         player2HealthValueMax = GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().healthPointsMax;
         player2HealthValue = GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().healthPointsCurrent;
         Player2NameText.GetComponent<Text>().text = player2Name;
-        Player2HealthText.GetComponent<Text>().text = player2HealthValue + "/" + player2HealthValueMax;
+        Player2HealthText.GetComponent<Text>().text = player2HealthValue + "   l   " + player2HealthValueMax;
 
         player3Name = GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().playerName;
         player3HealthValueMax = GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().healthPointsMax;
         player3HealthValue = GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().healthPointsCurrent;
         Player3NameText.GetComponent<Text>().text = player3Name;
-        Player3HealthText.GetComponent<Text>().text = player3HealthValue + "/" + player3HealthValueMax;
+        Player3HealthText.GetComponent<Text>().text = player3HealthValue + "   l   " + player3HealthValueMax;
 
         player4Name = GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().playerName;
         player4HealthValueMax = GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().healthPointsMax;
         player4HealthValue = GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().healthPointsCurrent;
         Player4NameText.GetComponent<Text>().text = player4Name;
-        Player4HealthText.GetComponent<Text>().text = player4HealthValue + "/" + player4HealthValueMax;
+        Player4HealthText.GetComponent<Text>().text = player4HealthValue + "   l   " + player4HealthValueMax;
 
     }
 }
