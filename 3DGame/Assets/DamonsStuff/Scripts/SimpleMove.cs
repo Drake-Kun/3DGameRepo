@@ -29,8 +29,15 @@ public class SimpleMove : MonoBehaviour {
         {
             talkToMe.SetActive(true);
             showMe.SetActive(false);
+            talkToMe.GetComponentInChildren<Typing>().instantStart = true;
             talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
             talkToMe.GetComponentInChildren<Typing>().Restart();
+            talkToMe.GetComponentInChildren<Typing>().semiCutscene = other.GetComponent<Talking>().semiCutscene;
+            talkToMe.GetComponentInChildren<Typing>().onlyOnce = other.GetComponent<Talking>().onlyOnce;
+            if (other.GetComponent<Talking>().onlyOnce)
+            {
+                talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;
+            }
             if (other.GetComponentInChildren<Talking>().semiCutscene)
             {
                 GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
@@ -47,8 +54,15 @@ public class SimpleMove : MonoBehaviour {
             {
                 talkToMe.SetActive(true);
                 showMe.SetActive(false);
+                talkToMe.GetComponentInChildren<Typing>().instantStart = false;
                 talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
                 talkToMe.GetComponentInChildren<Typing>().Restart();
+                talkToMe.GetComponentInChildren<Typing>().semiCutscene = other.GetComponent<Talking>().semiCutscene;
+                talkToMe.GetComponentInChildren<Typing>().onlyOnce = other.GetComponent<Talking>().onlyOnce;
+                if (other.GetComponent<Talking>().onlyOnce)
+                {
+                    talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;
+                }
                 if (other.GetComponentInChildren<Talking>().semiCutscene)
                 {
                     GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);

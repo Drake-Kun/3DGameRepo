@@ -8,6 +8,7 @@ public class Talking : MonoBehaviour {
     public GameObject changeCamera;
     public bool combat = false;
     public bool instantStart = false;
+    public bool onlyOnce = false;
     // Use this for initialization
     void Start () {
         

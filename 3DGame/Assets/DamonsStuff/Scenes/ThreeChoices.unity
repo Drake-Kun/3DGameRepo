@@ -373,6 +373,7 @@ MonoBehaviour:
   changeCamera: {fileID: 0}
   combat: 0
   instantStart: 0
+  onlyOnce: 0
 --- !u!1 &172100394
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +676,11 @@ MonoBehaviour:
   textSpeed: 0.1
   showMe: {fileID: 172100394}
   talkToMe: {fileID: 759061877}
+  activationSpot: {fileID: 0}
   combat: 0
+  instantStart: 0
+  semiCutscene: 0
+  onlyOnce: 0
 --- !u!114 &1037858164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,6 +968,7 @@ MonoBehaviour:
   changeCamera: {fileID: 1187964339}
   combat: 0
   instantStart: 0
+  onlyOnce: 0
 --- !u!1 &1408375147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1540,7 @@ MonoBehaviour:
   changeCamera: {fileID: 0}
   combat: 1
   instantStart: 0
+  onlyOnce: 0
 --- !u!1 &1917188500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,6 +1645,7 @@ MonoBehaviour:
   changeCamera: {fileID: 1187964339}
   combat: 0
   instantStart: 1
+  onlyOnce: 1
 --- !u!23 &1969911476
 MeshRenderer:
   m_ObjectHideFlags: 0

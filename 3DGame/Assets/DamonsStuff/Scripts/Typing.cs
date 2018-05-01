@@ -15,10 +15,14 @@ public class Typing : MonoBehaviour {
     public float textSpeed = 0.1f;
     public GameObject showMe;
     public GameObject talkToMe;
+    public GameObject activationSpot;
     GameObject MainCamera;
-    public bool combat;
+    public bool combat = false;
+    public bool instantStart = false;
     bool activateME = false;
     private bool isTalking = false;
+    public bool semiCutscene = false;
+    public bool onlyOnce = false;
     void Start () {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         text = gameObject.GetComponent<Text>().text;
@@ -46,13 +50,23 @@ public class Typing : MonoBehaviour {
             if (conversationIndex >= conversation.Length)
             {
                 isTalking = false;
-                showMe.SetActive(true);
+                if (!instantStart)
+                {
+                    showMe.SetActive(true);
+                }
                 talkToMe.SetActive(false);
-                GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
+                if (semiCutscene)
+                {
+                    GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
+                }
                 if (combat)
                 {
                     SceneManager.LoadScene("BattleScene");
                     Debug.Log("Yeah, we wanna fight");
+                }
+                if (onlyOnce)
+                {
+                    activationSpot.SetActive(false);
                 }
             }
         }
