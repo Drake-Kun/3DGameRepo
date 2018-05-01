@@ -34,6 +34,8 @@ public class SimpleMove : MonoBehaviour {
             talkToMe.GetComponentInChildren<Typing>().Restart();
             talkToMe.GetComponentInChildren<Typing>().semiCutscene = other.GetComponent<Talking>().semiCutscene;
             talkToMe.GetComponentInChildren<Typing>().onlyOnce = other.GetComponent<Talking>().onlyOnce;
+            talkToMe.GetComponentInChildren<Typing>().choice = other.GetComponent<Talking>().choice;
+            talkToMe.GetComponentInChildren<Typing>().yesOrNo = other.GetComponent<Talking>().yesOrNo;
             if (other.GetComponent<Talking>().onlyOnce)
             {
                 talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;
@@ -59,6 +61,8 @@ public class SimpleMove : MonoBehaviour {
                 talkToMe.GetComponentInChildren<Typing>().Restart();
                 talkToMe.GetComponentInChildren<Typing>().semiCutscene = other.GetComponent<Talking>().semiCutscene;
                 talkToMe.GetComponentInChildren<Typing>().onlyOnce = other.GetComponent<Talking>().onlyOnce;
+                talkToMe.GetComponentInChildren<Typing>().choice = other.GetComponent<Talking>().choice;
+                talkToMe.GetComponentInChildren<Typing>().yesOrNo = other.GetComponent<Talking>().yesOrNo;
                 if (other.GetComponent<Talking>().onlyOnce)
                 {
                     talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;

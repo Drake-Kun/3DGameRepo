@@ -16,6 +16,8 @@ public class Typing : MonoBehaviour {
     public GameObject showMe;
     public GameObject talkToMe;
     public GameObject activationSpot;
+    public GameObject yesOrNo;
+    public bool choice = false;
     GameObject MainCamera;
     public bool combat = false;
     public bool instantStart = false;
@@ -49,24 +51,30 @@ public class Typing : MonoBehaviour {
             charCount = 0;
             if (conversationIndex >= conversation.Length)
             {
-                isTalking = false;
-                if (!instantStart)
+                if (!choice)
                 {
-                    showMe.SetActive(true);
-                }
-                talkToMe.SetActive(false);
-                if (semiCutscene)
+                    isTalking = false;
+                    if (!instantStart)
+                    {
+                        showMe.SetActive(true);
+                    }
+                    talkToMe.SetActive(false);
+                    if (semiCutscene)
+                    {
+                        GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
+                    }
+                    if (combat)
+                    {
+                        SceneManager.LoadScene("BattleScene");
+                        Debug.Log("Yeah, we wanna fight");
+                    }
+                    if (onlyOnce)
+                    {
+                        activationSpot.SetActive(false);
+                    }
+                } else
                 {
-                    GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
-                }
-                if (combat)
-                {
-                    SceneManager.LoadScene("BattleScene");
-                    Debug.Log("Yeah, we wanna fight");
-                }
-                if (onlyOnce)
-                {
-                    activationSpot.SetActive(false);
+                    yesOrNo.SetActive(true);
                 }
             }
         }
@@ -79,5 +87,27 @@ public class Typing : MonoBehaviour {
         totalTime = 0;
         charCount = 0;
         isTalking = true;
+    }
+    public void Noooo()
+    {
+        isTalking = false;
+        if (!instantStart)
+        {
+            showMe.SetActive(true);
+        }
+        talkToMe.SetActive(false);
+        if (semiCutscene)
+        {
+            GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
+        }
+        if (combat)
+        {
+            SceneManager.LoadScene("BattleScene");
+            Debug.Log("Yeah, we wanna fight");
+        }
+        if (onlyOnce)
+        {
+            activationSpot.SetActive(false);
+        }
     }
 }
