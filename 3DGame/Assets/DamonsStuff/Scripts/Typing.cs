@@ -31,7 +31,8 @@ public class Typing : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
+        Debug.Log(conversationIndex);
         text = conversation[conversationIndex];
         totalTime += Time.deltaTime;
         if (totalTime >= textSpeed && charCount < text.Length)
@@ -45,37 +46,32 @@ public class Typing : MonoBehaviour {
         string words = text.Substring(0, charCount);
         //Debug.Log(words);
         gameObject.GetComponent<Text>().text = words;
-        if (Input.GetButtonDown("Fire1") && isTalking && activateME)
+        if (Input.GetButtonDown("Fire1") && activateME)
         {
             conversationIndex++;
             charCount = 0;
             if (conversationIndex >= conversation.Length)
             {
-                //if (!choice)
-               // {
-                    isTalking = false;
-                    if (!instantStart)
-                    {
-                        showMe.SetActive(true);
-                    }
-                    talkToMe.SetActive(false);
-                    if (semiCutscene)
-                    {
-                        GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
-                    }
-                    if (combat)
-                    {
-                        SceneManager.LoadScene("BattleScene");
-                        Debug.Log("Yeah, we wanna fight");
-                    }
-                    if (onlyOnce)
-                    {
-                        activationSpot.SetActive(false);
-                    }
-                /* } else
+                Restart();
+                Debug.Log(instantStart);
+                if (!instantStart)
                 {
-                    yesOrNo.SetActive(true);
-                }*/
+                    showMe.SetActive(true);
+                }
+                talkToMe.SetActive(false);
+                if (semiCutscene)
+                {
+                    GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(MainCamera);
+                }
+                if (combat)
+                {
+                    SceneManager.LoadScene("BattleScene");
+                    Debug.Log("Yeah, we wanna fight");
+                }
+                if (onlyOnce)
+                {
+                    activationSpot.SetActive(false);
+                }
             }
         }
         activateME = true;
@@ -86,7 +82,7 @@ public class Typing : MonoBehaviour {
         conversationIndex = 0;
         totalTime = 0;
         charCount = 0;
-        isTalking = true;
+        activateME = false;
     }
     public void Noooo()
     {

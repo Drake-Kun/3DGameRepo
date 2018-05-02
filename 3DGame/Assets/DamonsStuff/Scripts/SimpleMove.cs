@@ -27,25 +27,8 @@ public class SimpleMove : MonoBehaviour {
             showMe.SetActive(true);
         } else if (other.GetComponent<Talking>().instantStart)
         {
-            talkToMe.SetActive(true);
-            showMe.SetActive(false);
             talkToMe.GetComponentInChildren<Typing>().instantStart = true;
-            talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
-            talkToMe.GetComponentInChildren<Typing>().Restart();
-            talkToMe.GetComponentInChildren<Typing>().semiCutscene = other.GetComponent<Talking>().semiCutscene;
-            talkToMe.GetComponentInChildren<Typing>().onlyOnce = other.GetComponent<Talking>().onlyOnce;
-            talkToMe.GetComponentInChildren<Typing>().choice = other.GetComponent<Talking>().choice;
-            talkToMe.GetComponentInChildren<Typing>().yesOrNo = other.GetComponent<Talking>().yesOrNo;
-            if (other.GetComponent<Talking>().onlyOnce)
-            {
-                talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;
-            }
-            if (other.GetComponentInChildren<Talking>().semiCutscene)
-            {
-                GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
-            }
-            //Debug.Log("Atttaaaaacccckckkkk");
-            talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
+            StartConversation(other);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -54,25 +37,8 @@ public class SimpleMove : MonoBehaviour {
         {
             if (talkToMe.active == false)
             {
-                talkToMe.SetActive(true);
-                showMe.SetActive(false);
                 talkToMe.GetComponentInChildren<Typing>().instantStart = false;
-                talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
-                talkToMe.GetComponentInChildren<Typing>().Restart();
-                talkToMe.GetComponentInChildren<Typing>().semiCutscene = other.GetComponent<Talking>().semiCutscene;
-                talkToMe.GetComponentInChildren<Typing>().onlyOnce = other.GetComponent<Talking>().onlyOnce;
-                talkToMe.GetComponentInChildren<Typing>().choice = other.GetComponent<Talking>().choice;
-                talkToMe.GetComponentInChildren<Typing>().yesOrNo = other.GetComponent<Talking>().yesOrNo;
-                if (other.GetComponent<Talking>().onlyOnce)
-                {
-                    talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;
-                }
-                if (other.GetComponentInChildren<Talking>().semiCutscene)
-                {
-                    GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
-                }
-                //Debug.Log("Atttaaaaacccckckkkk");
-                talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
+                StartConversation(other);
             } 
         }
     }
@@ -82,5 +48,27 @@ public class SimpleMove : MonoBehaviour {
         {
             showMe.SetActive(false);
         }
+    }
+
+    private void StartConversation(Collider other)
+    {
+        talkToMe.SetActive(true);
+        talkToMe.GetComponentInChildren<Typing>().Restart();
+        showMe.SetActive(false);
+        talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
+        talkToMe.GetComponentInChildren<Typing>().semiCutscene = other.GetComponent<Talking>().semiCutscene;
+        talkToMe.GetComponentInChildren<Typing>().onlyOnce = other.GetComponent<Talking>().onlyOnce;
+        talkToMe.GetComponentInChildren<Typing>().choice = other.GetComponent<Talking>().choice;
+        talkToMe.GetComponentInChildren<Typing>().yesOrNo = other.GetComponent<Talking>().yesOrNo;
+        if (other.GetComponent<Talking>().onlyOnce)
+        {
+            //talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;
+        }
+        if (other.GetComponentInChildren<Talking>().semiCutscene)
+        {
+            //GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
+        }
+        //Debug.Log("Atttaaaaacccckckkkk");
+        //talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
     }
 }
