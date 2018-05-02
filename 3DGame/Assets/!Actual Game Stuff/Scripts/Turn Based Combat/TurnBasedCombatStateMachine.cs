@@ -47,6 +47,14 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
     public GameObject enemy5TargetUnit;
     public GameObject enemy6TargetUnit;
 
+
+    // Players actions/turns
+    public bool player1Action;
+    public bool player2Action;
+    public bool player3Action;
+    public bool player4Action;
+
+
     //Player 1 stats and spells selected
 
     public int player1TotalDamage;
@@ -287,6 +295,30 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                 //Press B to go back.
                 // I need A LOT of functions for this... Because reasons.
+
+                // Who's action are we currently deciding?
+
+
+                // Me trying to highlight people WOOOOOO
+                if (player1Action == true)
+                {
+                    GameObject.Find("PlayerHighlighter").GetComponent<Transform>().position = GameObject.Find("FriendlyUnit4").GetComponent<Transform>().position;
+                }
+
+                else if (player2Action == true)
+                {
+                    GameObject.Find("PlayerHighlighter").GetComponent<Transform>().position = GameObject.Find("FriendlyUnit2").GetComponent<Transform>().position;
+                }
+
+                else if (player3Action == true)
+                {
+                    GameObject.Find("PlayerHighlighter").GetComponent<Transform>().position = GameObject.Find("FriendlyUnit3").GetComponent<Transform>().position;
+                }
+
+                else if (player4Action == true)
+                {
+                    GameObject.Find("PlayerHighlighter").GetComponent<Transform>().position = GameObject.Find("FriendlyUnit4").GetComponent<Transform>().position;
+                }
 
 
                 // Player 1 press B

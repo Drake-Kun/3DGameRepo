@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: db79c4b256b939d4996652ac118664b9
+timeCreated: 1525287206
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - enemy1SpiderButton: {fileID: 1175197552927668, guid: 00e1e153964a5fe46955a130d9bc71a0,
+      type: 2}
+  - enemy2SpiderButton: {fileID: 1217751940168978, guid: bc0cdc4ea2c520744823c07345e0d347,
+      type: 2}
+  - enemy3SpiderButton: {fileID: 1642099526825408, guid: 68ddfd1b36671fa448251ae140ade08b,
+      type: 2}
+  - enemy4SpiderButton: {fileID: 1825223446097256, guid: 5bcc28ab687a07044a5df68fde8746f9,
+      type: 2}
+  - enemy5SpiderButton: {fileID: 1461065478641716, guid: 68b2ccda078239d4194a9186e3e7697e,
+      type: 2}
+  - enemy6SpiderButton: {fileID: 1602078425954466, guid: 65e98e8f37eae0c408a92c4cc6a31f2f,
+      type: 2}
+  - enemy1WraithButton: {fileID: 1494945769998354, guid: c5f4d5c7025799b42957c3b231fa0951,
+      type: 2}
+  - enemy2WraithButton: {fileID: 1812701396964774, guid: cc4bbf2040cc0b64a9ec635b5bad7ecd,
+      type: 2}
+  - enemy3WraithButton: {fileID: 1480532866653456, guid: 9888838730a968242b863f7990161e9c,
+      type: 2}
+  - enemy4WraithButton: {fileID: 1596879828785172, guid: e1fce12b216f18845b85ebed128c414e,
+      type: 2}
+  - enemy5WraithButton: {fileID: 1558323705328188, guid: 8c7f206087094394f9a387ad95c63548,
+      type: 2}
+  - enemy6WraithButton: {fileID: 1464899880829900, guid: af64be72e4e54dd429db7cc7ffcc834a,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -28,9 +28,6 @@ public class PlayerInformation : MonoBehaviour {
 
     void Start()
     {
-        playerLevel = 1;
-        currentEXP = 0;
-        neededEXP = 10;
         healthPointsCurrent = healthPointsMax;
         techPointsCurrent = techPointsMax;
     }
@@ -49,7 +46,12 @@ public class PlayerInformation : MonoBehaviour {
 
         if (healthPointsCurrent <= 0)
         {
-            Destroy(gameObject);
+            fallen = true;
+        }
+
+        else
+        {
+            fallen = false;
         }
 
         if (currentEXP >= neededEXP)
@@ -63,5 +65,10 @@ public class PlayerInformation : MonoBehaviour {
         {
             fallen = true;
         }
+    }
+
+    public void CombatEnd()
+    {
+
     }
 }

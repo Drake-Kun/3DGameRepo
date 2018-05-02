@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class EnemyInformation : MonoBehaviour {
 
-    Animator anim;
+    // Our enemy types:
+    // 1 = Spider
+    // 2 = Wraith
+    public int enemyType;
+
+    public GameObject SpiderPrefab;
+    public GameObject WraithPrefab;
+
+    public int areaID;
+
+
+    // Animator
+    public Animator anim;
 
     //Enemy stats
     public int currentHealthPoints;
@@ -25,7 +37,19 @@ public class EnemyInformation : MonoBehaviour {
 
     void Start()
     {
-        anim = GetComponentInChildren<Animator>();
+        if (areaID == 1)
+        {
+            int enemyType = Random.Range(1, 3);
+            if (enemyType == 1)
+            {
+                Instantiate(SpiderPrefab, GetComponentInParent<Transform>());
+            }
+
+            else if (enemyType == 2)
+            {
+                Instantiate(WraithPrefab);
+            }
+        }
     }
 
     void Update()
@@ -51,7 +75,7 @@ public class EnemyInformation : MonoBehaviour {
         }
         else if (attacks == false)
         {
-            anim.SetBool("Attacks", false);
+            //anim.SetBool("Attacks", false);
         }
     }
 }
