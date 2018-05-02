@@ -19,6 +19,7 @@ public class Typing : MonoBehaviour {
     public GameObject yesOrNo;
     public bool choice = false;
     GameObject MainCamera;
+    GameObject player;
     public bool combat = false;
     public bool instantStart = false;
     bool activateME = false;
@@ -28,6 +29,7 @@ public class Typing : MonoBehaviour {
     void Start () {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         text = gameObject.GetComponent<Text>().text;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame

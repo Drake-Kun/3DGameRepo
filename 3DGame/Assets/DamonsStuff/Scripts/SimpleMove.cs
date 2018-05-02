@@ -5,18 +5,22 @@ using UnityEngine;
 public class SimpleMove : MonoBehaviour {
     public GameObject showMe;
     public GameObject talkToMe;
+    public bool isTalking = false;
 	// Use this for initialization
 	void Start () {
-		
+        isTalking = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+        if (!isTalking)
+        {
+            var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+            var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
+            transform.Rotate(0, x, 0);
+            transform.Translate(0, 0, z);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +33,7 @@ public class SimpleMove : MonoBehaviour {
         {
             talkToMe.GetComponentInChildren<Typing>().instantStart = true;
             StartConversation(other);
+            isTalking = true;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -39,6 +44,7 @@ public class SimpleMove : MonoBehaviour {
             {
                 talkToMe.GetComponentInChildren<Typing>().instantStart = false;
                 StartConversation(other);
+                isTalking = true;
             } 
         }
     }
@@ -62,13 +68,13 @@ public class SimpleMove : MonoBehaviour {
         talkToMe.GetComponentInChildren<Typing>().yesOrNo = other.GetComponent<Talking>().yesOrNo;
         if (other.GetComponent<Talking>().onlyOnce)
         {
-            //talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;
+            talkToMe.GetComponentInChildren<Typing>().activationSpot = other.gameObject;
         }
         if (other.GetComponentInChildren<Talking>().semiCutscene)
         {
-            //GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
+            GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
         }
         //Debug.Log("Atttaaaaacccckckkkk");
-        //talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
+        talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
     }
 }
