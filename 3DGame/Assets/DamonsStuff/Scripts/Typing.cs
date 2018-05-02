@@ -51,8 +51,8 @@ public class Typing : MonoBehaviour {
             charCount = 0;
             if (conversationIndex >= conversation.Length)
             {
-                if (!choice)
-                {
+                //if (!choice)
+               // {
                     isTalking = false;
                     if (!instantStart)
                     {
@@ -72,10 +72,10 @@ public class Typing : MonoBehaviour {
                     {
                         activationSpot.SetActive(false);
                     }
-                } else
+                /* } else
                 {
                     yesOrNo.SetActive(true);
-                }
+                }*/
             }
         }
         activateME = true;
