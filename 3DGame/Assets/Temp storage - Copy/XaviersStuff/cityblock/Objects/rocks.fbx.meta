@@ -1,0 +1,200 @@
+fileFormatVersion: 2
+guid: 5b886fc18e8f33d4191bee5a516029da
+timeCreated: 1425686758
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: detailstone1
+    100002: detailstone2
+    100004: fillers
+    100006: rock1
+    100008: rock1_1
+    100010: rock1_2
+    100012: rock1_3
+    100014: rock1_4
+    100016: rock2
+    100018: rock2_1
+    100020: rock3
+    100022: rock3_1
+    100024: rockarc1
+    100026: //RootNode
+    100028: rocks1
+    100030: rocks1_1
+    400000: detailstone1
+    400002: detailstone2
+    400004: fillers
+    400006: rock1
+    400008: rock1_1
+    400010: rock1_2
+    400012: rock1_3
+    400014: rock1_4
+    400016: rock2
+    400018: rock2_1
+    400020: rock3
+    400022: rock3_1
+    400024: rockarc1
+    400026: //RootNode
+    400028: rocks1
+    400030: rocks1_1
+    2300000: detailstone1
+    2300002: detailstone2
+    2300004: rock1
+    2300006: rock1_1
+    2300008: rock1_2
+    2300010: rock1_3
+    2300012: rock1_4
+    2300014: rock2
+    2300016: rock2_1
+    2300018: rock3
+    2300020: rock3_1
+    2300022: rockarc1
+    2300024: rocks1
+    2300026: rocks1_1
+    3300000: detailstone1
+    3300002: detailstone2
+    3300004: rock1
+    3300006: rock1_1
+    3300008: rock1_2
+    3300010: rock1_3
+    3300012: rock1_4
+    3300014: rock2
+    3300016: rock2_1
+    3300018: rock3
+    3300020: rock3_1
+    3300022: rockarc1
+    3300024: rocks1
+    3300026: rocks1_1
+    4300000: rocks1
+    4300002: rocks1_1
+    4300004: detailstone1
+    4300006: detailstone2
+    4300008: rock3
+    4300010: rock3_1
+    4300012: rock2
+    4300014: rock2_1
+    4300016: rock1
+    4300018: rock1_4
+    4300020: rock1_1
+    4300022: rock1_3
+    4300024: rock1_2
+    4300026: rockarc1
+    6400000: detailstone1
+    6400002: detailstone2
+    6400004: rock1
+    6400006: rock1_1
+    6400008: rock1_2
+    6400010: rock1_3
+    6400012: rock1_4
+    6400014: rock2
+    6400016: rock2_1
+    6400018: rock3
+    6400020: rock3_1
+    6400022: rockarc1
+    6400024: rocks1
+    6400026: rocks1_1
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arc
+    second: {fileID: 2100000, guid: e8ca88f774fbc164cb2d8467f7a4a30c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock1
+    second: {fileID: 2100000, guid: 9fd1efe104d132745a83990a9e3c9bc9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock2
+    second: {fileID: 2100000, guid: 19b0ef012f4e51f48b9c3ffc57b2ac9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock3
+    second: {fileID: 2100000, guid: 19a622d9358857645936316157a8287c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: smallrocks
+    second: {fileID: 2100000, guid: 812d434ad5f7b094bafac10671dc3a03, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 3
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
