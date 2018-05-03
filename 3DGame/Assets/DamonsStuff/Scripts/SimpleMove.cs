@@ -61,7 +61,8 @@ public class SimpleMove : MonoBehaviour {
         talkToMe.SetActive(true);
         talkToMe.GetComponentInChildren<Typing>().Restart();
         showMe.SetActive(false);
-        talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
+        //talkToMe.GetComponentInChildren<Typing>().conversation = other.GetComponent<Talking>().conversation;
+        talkToMe.GetComponentInChildren<Typing>().conversationList = other.GetComponent<Talking>().conversationList;
         talkToMe.GetComponentInChildren<Typing>().semiCutscene = other.GetComponent<Talking>().semiCutscene;
         talkToMe.GetComponentInChildren<Typing>().onlyOnce = other.GetComponent<Talking>().onlyOnce;
         talkToMe.GetComponentInChildren<Typing>().choice = other.GetComponent<Talking>().choice;
@@ -75,6 +76,7 @@ public class SimpleMove : MonoBehaviour {
             GameObject.FindGameObjectWithTag("Fade").GetComponent<Fading>().Darkness(other.GetComponent<Talking>().changeCamera);
         }
         //Debug.Log("Atttaaaaacccckckkkk");
-        talkToMe.GetComponentInChildren<Typing>().combat = other.GetComponent<Talking>().combat;
+        talkToMe.GetComponentInChildren<Typing>().loadScene = other.GetComponent<Talking>().loadScene;
+        talkToMe.GetComponentInChildren<Typing>().sceneName = other.GetComponent<Talking>().sceneName;
     }
 }

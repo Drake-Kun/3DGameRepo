@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/!Actual Game Stuff/Scenes/Main Menu.unity
+    path: Assets/!Actual Game Stuff/Scenes/MainMenu.unity
     guid: 7553b7416676d4641964bd70cccd039d
   - enabled: 1
     path: Assets/DamonsStuff/Scenes/ThreeChoices.unity
@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/!Actual Game Stuff/Scenes/GameDemo.unity
     guid: 34da5fae63c65654da2bd78582e0722b
+  - enabled: 1
+    path: Assets/XaviersStuff/Game Demo.unity
+    guid: 6b4a83893d0f1f948aed730638eaec08
