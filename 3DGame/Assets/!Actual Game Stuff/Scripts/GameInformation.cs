@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameInformation : MonoBehaviour {
 
-	
+    public int areaID;
+
+    void Start()
+    {
+        areaID = 1;
+    }
 
 }
