@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SimpleMove : MonoBehaviour {
     public GameObject showMe;
     public GameObject talkToMe;
     public bool isTalking = false;
+    bool isPaused = false;
+    float originTime = 0;
+    public GameObject pauseMenu;
 	// Use this for initialization
 	void Start () {
         isTalking = false;
+        originTime = Time.timeScale;
 	}
 	
 	// Update is called once per frame
@@ -21,6 +26,26 @@ public class SimpleMove : MonoBehaviour {
             transform.Rotate(0, x, 0);
             transform.Translate(0, 0, z);
         }
+        if(Input.GetKeyDown(KeyCode.Joystick1Button7)|| Input.GetButtonDown("Cancel"))
+        {
+            if (!isPaused)
+            {
+                isPaused = true;
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(GameObject.Find("Resume"), new BaseEventData(EventSystem.current));
+            } else
+            {
+                Unpause();
+            }
+        }
+    }
+
+    public void Unpause()
+    {
+        isPaused = false;
+        Time.timeScale = originTime;
+        pauseMenu.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,7 +63,7 @@ public class SimpleMove : MonoBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Interactable" && Input.GetButtonDown("Fire1"))
+        if (other.gameObject.tag == "Interactable" && Input.GetButtonDown("Fire1") && !other.GetComponent<Talking>().instantStart)
         {
             if (talkToMe.active == false)
             {

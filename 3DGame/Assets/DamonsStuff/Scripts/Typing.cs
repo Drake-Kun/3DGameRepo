@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using System;
 
 public class Typing : MonoBehaviour {
@@ -41,6 +42,7 @@ public class Typing : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
         Debug.Log(conversationIndex);
+        Debug.Log(conversationBranchIndex);
         //text = conversation[conversationIndex];
         text = conversationList[conversationBranchIndex].conversation[conversationIndex];
         totalTime += Time.deltaTime;
@@ -80,7 +82,7 @@ public class Typing : MonoBehaviour {
                         }
                         if (loadScene)
                         {
-                            SceneManager.LoadScene("BattleScene");
+                            SceneManager.LoadScene(sceneName);
                             Debug.Log("Yeah, we wanna fight");
                         }
                         if (onlyOnce)
@@ -91,6 +93,7 @@ public class Typing : MonoBehaviour {
                     else
                     {
                         yesOrNo.SetActive(true);
+                        EventSystem.current.SetSelectedGameObject(GameObject.Find("Yes"), new BaseEventData(EventSystem.current));
                     }
                 }
             }
