@@ -632,6 +632,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player2CombatCanvas.SetActive(false);
                     player1TargetUnit = null;
                     player1SelectEnemyCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy1"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player2SelectEnemyCanvas.activeSelf && player2BasicAttackSelected)
@@ -639,6 +640,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player2SelectEnemyCanvas.SetActive(false);
                     player2BasicAttackSelected = false;
                     player2BaseMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player2SpellsMenuCanvas.activeSelf == true)
@@ -646,6 +648,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player2SpellsMenuCanvas.SetActive(false);
 
                     player2BaseMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player2SelectEnemyCanvas.activeSelf && player2SpellSelected)
@@ -655,6 +658,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player2SpellSelected = false;
 
                     player2SpellsMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Spell1"), new BaseEventData(EventSystem.current));
                 }
 
                 // Player 3 press B
@@ -664,6 +668,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player3CombatCanvas.SetActive(false);
                     player2TargetUnit = null;
                     player2SelectEnemyCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy1"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player3SelectEnemyCanvas.activeSelf && player3BasicAttackSelected)
@@ -671,6 +676,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player3SelectEnemyCanvas.SetActive(false);
                     player3BasicAttackSelected = false;
                     player3BaseMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player3SpellsMenuCanvas.activeSelf == true)
@@ -678,6 +684,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player3SpellsMenuCanvas.SetActive(false);
 
                     player3BaseMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player3SelectEnemyCanvas.activeSelf && player3SpellSelected)
@@ -687,6 +694,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player3SpellSelected = false;
 
                     player3SpellsMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Spell1"), new BaseEventData(EventSystem.current));
                 }
 
                 // Player 4 press B
@@ -696,6 +704,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player4CombatCanvas.SetActive(false);
                     player3TargetUnit = null;
                     player3SelectEnemyCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Enemy1"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player4SelectEnemyCanvas.activeSelf && player4BasicAttackSelected)
@@ -703,6 +712,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player4SelectEnemyCanvas.SetActive(false);
                     player4BasicAttackSelected = false;
                     player4BaseMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player4SpellsMenuCanvas.activeSelf == true)
@@ -710,6 +720,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player4SpellsMenuCanvas.SetActive(false);
 
                     player4BaseMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
                 }
 
                 if (Input.GetButtonDown("Fire2") && player4SelectEnemyCanvas.activeSelf && player4SpellSelected)
@@ -719,6 +730,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player4SpellSelected = false;
 
                     player4SpellsMenuCanvas.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("Spell1"), new BaseEventData(EventSystem.current));
                 }
 
 
