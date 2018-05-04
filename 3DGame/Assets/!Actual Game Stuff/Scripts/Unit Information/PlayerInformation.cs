@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class PlayerInformation : MonoBehaviour {
 
-    //Player level related stats
-    public int playerLevel;
     public string playerName;
-    public int currentEXP;
-    public int neededEXP;
 
     //Player stats
     public int healthPointsMax;
@@ -25,12 +21,6 @@ public class PlayerInformation : MonoBehaviour {
     public int poisonTimer;
 
     public bool fallen = false;
-
-    void Start()
-    {
-        healthPointsCurrent = healthPointsMax;
-        techPointsCurrent = techPointsMax;
-    }
 
     void Update()
     {
@@ -54,21 +44,9 @@ public class PlayerInformation : MonoBehaviour {
             fallen = false;
         }
 
-        if (currentEXP >= neededEXP)
-        {
-            currentEXP -= neededEXP;
-            playerLevel += 1;
-            neededEXP = (neededEXP + 5) * 2;
-        }
-
         if (healthPointsCurrent <= 0)
         {
             fallen = true;
         }
-    }
-
-    public void CombatEnd()
-    {
-
     }
 }

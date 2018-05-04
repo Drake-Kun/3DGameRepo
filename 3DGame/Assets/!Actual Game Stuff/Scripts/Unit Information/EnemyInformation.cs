@@ -12,6 +12,8 @@ public class EnemyInformation : MonoBehaviour {
     public GameObject SpiderPrefab;
     public GameObject WraithPrefab;
 
+    public GameObject Enemy;
+
     public int areaID;
 
 
@@ -34,23 +36,6 @@ public class EnemyInformation : MonoBehaviour {
     public bool attacks = false;
 
     public int expGiven;
-
-    void Start()
-    {
-        if (areaID == 1)
-        {
-            int enemyType = Random.Range(1, 3);
-            if (enemyType == 1)
-            {
-                Instantiate(SpiderPrefab, GetComponentInParent<Transform>());
-            }
-
-            else if (enemyType == 2)
-            {
-                Instantiate(WraithPrefab);
-            }
-        }
-    }
 
     void Update()
     {
@@ -77,5 +62,17 @@ public class EnemyInformation : MonoBehaviour {
         {
             //anim.SetBool("Attacks", false);
         }
+    }
+
+    public void SpawnSpider()
+    {
+        Enemy = Instantiate(SpiderPrefab, GetComponentInParent<Transform>());
+        //ememy.transform.parent = transform;
+    }
+
+    public void SpawnWraith()
+    {
+        Enemy = Instantiate(WraithPrefab, GetComponentInParent<Transform>());
+        //ememy.transform.parent = transform;
     }
 }
