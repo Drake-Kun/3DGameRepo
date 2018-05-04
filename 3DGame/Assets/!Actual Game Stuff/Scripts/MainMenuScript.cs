@@ -15,7 +15,7 @@ public class MainMenuScript : MonoBehaviour {
 
     public void NewGame()
     {
-        SceneManager.LoadScene("DamonDemoScene");
+        SceneManager.LoadScene("ThreeChoices");
     }
 
     public void LoadGame()

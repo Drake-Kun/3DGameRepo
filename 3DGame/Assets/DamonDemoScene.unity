@@ -1016,6 +1016,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 440184, guid: 3b0ff3d7b2afcd3458db36094a47184a, type: 2}
   m_PrefabInternal: {fileID: 715517386}
+--- !u!114 &238464314 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114809337249558848, guid: 8715f4491f76946448c996f6aa50e4b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 160546589}
+  m_Script: {fileID: 11500000, guid: 83b9d4f74d8fb4f45be8e802e5ac8db8, type: 3}
 --- !u!1 &241541341
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,7 +4977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1224592521
 Transform:
   m_ObjectHideFlags: 0
@@ -5128,7 +5134,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1285562758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 238464314}
+        m_MethodName: SaveData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1285562758

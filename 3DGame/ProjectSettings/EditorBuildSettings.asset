@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/!Actual Game Stuff/Scenes/GameDemo.unity
     guid: 34da5fae63c65654da2bd78582e0722b
+  - enabled: 1
+    path: Assets/DamonDemoScene.unity
+    guid: b343e6cfb48ae5245ba62ae11a8995f2
   - enabled: 0
-    path: Assets/XaviersStuff/Game Demo.unity
-    guid: 6b4a83893d0f1f948aed730638eaec08
+    path: 
+    guid: 00000000000000000000000000000000
