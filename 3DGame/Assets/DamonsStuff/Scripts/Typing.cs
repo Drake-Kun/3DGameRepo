@@ -41,10 +41,13 @@ public class Typing : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        Debug.Log(conversationIndex);
-        Debug.Log(conversationBranchIndex);
+        //Debug.Log(conversationIndex);
+        //Debug.Log(conversationBranchIndex);
         //text = conversation[conversationIndex];
+        //Debug.Log(gameObject.name);
+        Debug.Log(conversationIndex);
         text = conversationList[conversationBranchIndex].conversation[conversationIndex];
+        Debug.Log(text);
         totalTime += Time.deltaTime;
         if (totalTime >= textSpeed && charCount < text.Length)
         {
