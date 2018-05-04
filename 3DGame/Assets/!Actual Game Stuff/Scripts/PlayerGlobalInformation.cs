@@ -74,7 +74,7 @@ public class PlayerGlobalInformation : MonoBehaviour {
         player1CurrentEXP = 0;
         player1NeededEXP = 10;
 
-        player1HealthPointsMax = 20;
+        player1HealthPointsMax = 30;
         Player1HealthPointsCurrent = player1HealthPointsMax;
         player1TechPointsMax = 10;
         player1PhysicalDamage = 6;
@@ -88,7 +88,7 @@ public class PlayerGlobalInformation : MonoBehaviour {
         player2CurrentEXP = 0;
         player2NeededEXP = 10;
 
-        player2HealthPointsMax = 17;
+        player2HealthPointsMax = 27;
         Player2HealthPointsCurrent = player2HealthPointsMax;
         player2TechPointsMax = 12;
         player2PhysicalDamage = 8;
@@ -102,7 +102,7 @@ public class PlayerGlobalInformation : MonoBehaviour {
         player3CurrentEXP = 0;
         player3NeededEXP = 10;
 
-        player3HealthPointsMax = 15;
+        player3HealthPointsMax = 25;
         Player3HealthPointsCurrent = player3HealthPointsMax;
         player3TechPointsMax = 15;
         player3PhysicalDamage = 2;
@@ -116,7 +116,7 @@ public class PlayerGlobalInformation : MonoBehaviour {
         player4CurrentEXP = 0;
         player4NeededEXP = 10;
 
-        player4HealthPointsMax = 17;
+        player4HealthPointsMax = 27;
         Player4HealthPointsCurrent = player4HealthPointsMax;
         player4TechPointsMax = 13;
         player4PhysicalDamage = 5;

@@ -606,6 +606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4142584002601656}
   - component: {fileID: 95763413287592920}
+  - component: {fileID: 114455445468917068}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -1218,6 +1219,24 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114455445468917068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903429782316708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08fb0bf9556d8e489ab321eebe3f6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 8
+  health: 8
+  physicalDamage: 6
+  physicalResist: 4
+  techDamage: 4
+  techResist: 2
+  expGiven: 10
 --- !u!137 &137927812690914674
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

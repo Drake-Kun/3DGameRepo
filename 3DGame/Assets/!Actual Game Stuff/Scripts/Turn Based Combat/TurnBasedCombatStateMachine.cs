@@ -330,11 +330,13 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             // Spawn enemy1!
             if (spawnSpiders > 0)
             {
+                spawnSpiders -= 1;
                 GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().SpawnSpider();
                 GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().Enemy.name = "Spider";
             }
             else if (spawnWraiths > 0)
             {
+                spawnWraiths -= 1;
                 GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().SpawnWraith();
                 GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().Enemy.name = "Wraith";
             }
@@ -342,37 +344,41 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             // Spawn enemy2!
             if (spawnSpiders > 0)
             {
+                spawnSpiders -= 1;
                 GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().SpawnSpider();
-                GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().Enemy.name = "Spider l1l";
-                GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name = "Spider l2l";
+                GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().Enemy.name = "Spider 1";
+                GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name = "Spider 2";
             }
             else if (spawnWraiths > 0)
             {
+                spawnWraiths -= 1;
                 GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().SpawnWraith();
                 if (GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().Enemy.name == "Wraith")
                 {
-                    GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().Enemy.name = "Wraith l1l";
-                    GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name = "Wraith l2l";
+                    GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().Enemy.name = "Wraith 1";
+                    GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name = "Wraith 2";
                 }
             }
 
             // Spawn enemy3!
             if (spawnSpiders > 0)
             {
+                spawnSpiders -= 1;
                 GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().SpawnSpider();
-                GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name = "Spider l3l";
+                GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name = "Spider 3";
             }
             else if (spawnWraiths > 0)
             {
+                spawnWraiths -= 1;
                 GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().SpawnWraith();
                 if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name == "Wraith")
                 {
-                    GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name = "Wraith l1l";
-                    GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name = "Wraith l2l";
+                    GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name = "Wraith 1";
+                    GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name = "Wraith 2";
                 }
-                else if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name == "Wraith l2l")
+                else if (GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name == "Wraith 2")
                 {
-                    GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name = "Wraith l3l";
+                    GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name = "Wraith 3";
                 }
                 else
                 {
@@ -384,24 +390,26 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             // Spawn enemy4!
             if (spawnSpiders > 0)
             {
+                spawnSpiders -= 1;
                 GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().SpawnSpider();
-                GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Spider l4l";
+                GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Spider 4";
             }
             else if (spawnWraiths > 0)
             {
+                spawnWraiths -= 1;
                 GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().SpawnWraith();
                 if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name == "Wraith")
                 {
-                    GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name = "Wraith l1l";
-                    GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Wraith l2l";
+                    GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name = "Wraith 1";
+                    GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Wraith 2";
                 }
-                else if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name == "Wraith l2l")
+                else if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name == "Wraith 2")
                 {
-                    GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Wraith l3l";
+                    GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Wraith 3";
                 }
-                else if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name == "Wraith l3l")
+                else if (GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name == "Wraith 3")
                 {
-                    GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Wraith l4l";
+                    GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Wraith 4";
                 }
                 else
                 {
@@ -412,28 +420,30 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             // Spawn enemy5!
             if (spawnSpiders > 0)
             {
+                spawnSpiders -= 1;
                 GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().SpawnSpider();
-                GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Spider l5l";
+                GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Spider 5";
             }
             else if (spawnWraiths > 0)
             {
+                spawnWraiths -= 1;
                 GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().SpawnWraith();
                 if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name == "Wraith")
                 {
-                    GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Wraith l1l";
-                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith l2l";
+                    GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name = "Wraith 1";
+                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith 2";
                 }
-                else if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name == "Wraith l2l")
+                else if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name == "Wraith 2")
                 {
-                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith l3l";
+                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith 3";
                 }
-                else if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name == "Wraith l3l")
+                else if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name == "Wraith 3")
                 {
-                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith l4l";
+                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith 4";
                 }
-                else if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name == "Wraith l4l")
+                else if (GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name == "Wraith 4")
                 {
-                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith l5l";
+                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith 5";
                 }
                 else
                 {
@@ -444,32 +454,34 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             // Spawn enemy6!
             if (spawnSpiders > 0)
             {
+                spawnSpiders -= 1;
                 GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().SpawnSpider();
-                GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Spider l6l";
+                GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Spider 6";
             }
             else if (spawnWraiths > 0)
             {
+                spawnWraiths -= 1;
                 GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().SpawnWraith();
                 if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith")
                 {
-                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith l1l";
-                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith l2l";
+                    GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name = "Wraith 1";
+                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith 2";
                 }
-                else if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith l2l")
+                else if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith 2")
                 {
-                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith l3l";
+                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith 3";
                 }
-                else if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith l3l")
+                else if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith 3")
                 {
-                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith l4l";
+                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith 4";
                 }
-                else if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith l4l")
+                else if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith 4")
                 {
-                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith l5l";
+                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith 5";
                 }
-                else if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith l5l")
+                else if (GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name == "Wraith 5")
                 {
-                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith l6l";
+                    GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name = "Wraith 6";
                 }
                 else
                 {
@@ -504,10 +516,15 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             currentState = BattleStates.WIN;
         }
 
-        else if (GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().fallen && GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().fallen 
+        else if (GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().fallen && GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().fallen
                         && GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().fallen && GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().fallen)
         {
             currentState = BattleStates.LOSE;
+        }
+
+        else
+        {
+
         }
 
         switch (currentState)
@@ -515,10 +532,34 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
             case (BattleStates.START):
 
                 combatCanvas.SetActive(true);
+
+                //We don't need damage calculations right now
+                damageCalculationsCanvas.SetActive(false);
+
+                // Player 1's canvas is ACTIVE
                 player1CombatCanvas.SetActive(true);
                 player1BaseMenuCanvas.SetActive(true);
                 player1SelectEnemyCanvas.SetActive(false);
                 player1SpellsMenuCanvas.SetActive(false);
+
+                //Make sure player2's canvas is set to inactive
+                player2BaseMenuCanvas.SetActive(false);
+                player2SpellsMenuCanvas.SetActive(false);
+                player2SelectEnemyCanvas.SetActive(false);
+                player2CombatCanvas.SetActive(false);
+
+                //Make sure player3's canvas is set to inactive
+                player3BaseMenuCanvas.SetActive(false);
+                player3SpellsMenuCanvas.SetActive(false);
+                player3SelectEnemyCanvas.SetActive(false);
+                player3CombatCanvas.SetActive(false);
+
+                //Make sure player4's canvas is set to inactive
+                player4BaseMenuCanvas.SetActive(false);
+                player4SpellsMenuCanvas.SetActive(false);
+                player4SelectEnemyCanvas.SetActive(false);
+                player4CombatCanvas.SetActive(false);
+
                 EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
                 currentState = BattleStates.PLAYERCHOICE;
 
@@ -867,7 +908,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player1TotalDamage = player1PhysicalDamage + player1TechDamage;
 
                     player1TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player1TotalDamage;
-                    damageCalculationsText.GetComponent<Text>().text = player1TargetUnit.name + " takes " + player1TotalDamage + " damage!";
+                    damageCalculationsText.GetComponent<Text>().text =  GameObject.Find("FriendlyUnit1").GetComponent<PlayerInformation>().playerName + " attacks! \n" + player1TargetUnit.name + " takes " + player1TotalDamage + " damage!";
                     player1PhysicalDamage = 0;
                     player1TechDamage = 0;
                     player1TotalDamage = 0;
@@ -904,7 +945,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     }
 
                     player2TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player2TotalDamage;
-                    damageCalculationsText.GetComponent<Text>().text = player2TargetUnit.name + " takes " + player2TotalDamage + " damage!";
+                    damageCalculationsText.GetComponent<Text>().text = GameObject.Find("FriendlyUnit2").GetComponent<PlayerInformation>().playerName + " attacks! \n" + player2TargetUnit.name + " takes " + player2TotalDamage + " damage!";
                     player2PhysicalDamage = 0;
                     player2TechDamage = 0;
                     player2TotalDamage = 0;
@@ -928,7 +969,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player3TotalDamage = player3PhysicalDamage + player3TechDamage;
 
                     player3TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player3TotalDamage;
-                    damageCalculationsText.GetComponent<Text>().text = player3TargetUnit.name + " takes " + player3TotalDamage + " damage!";
+                    damageCalculationsText.GetComponent<Text>().text = GameObject.Find("FriendlyUnit3").GetComponent<PlayerInformation>().playerName + " attacks! \n" + player3TargetUnit.name + " takes " + player3TotalDamage + " damage!";
                     player3PhysicalDamage = 0;
                     player3TechDamage = 0;
                     player3TotalDamage = 0;
@@ -952,7 +993,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     player4TotalDamage = player4PhysicalDamage + player4TechDamage;
 
                     player4TargetUnit.GetComponent<EnemyInformation>().currentHealthPoints -= player4TotalDamage;
-                    damageCalculationsText.GetComponent<Text>().text = player4TargetUnit.name + " takes " + player4TotalDamage + " damage!";
+                    damageCalculationsText.GetComponent<Text>().text = GameObject.Find("FriendlyUnit4").GetComponent<PlayerInformation>().playerName + " attacks! \n" + player4TargetUnit.name + " takes " + player4TotalDamage + " damage!";
                     player4PhysicalDamage = 0;
                     player4TechDamage = 0;
                     player4TotalDamage = 0;
@@ -981,7 +1022,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                         GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().attacks = true;
                         enemy1TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy1TotalDamage;
-                        damageCalculationsText.GetComponent<Text>().text = enemy1TargetUnit.name + " takes " + enemy1TotalDamage + " damage!";
+                        damageCalculationsText.GetComponent<Text>().text = GameObject.Find("EnemyUnit1").GetComponent<EnemyInformation>().Enemy.name + " attacks! \n" + enemy1TargetUnit.name + " takes " + enemy1TotalDamage + " damage!";
                         enemy1PhysicalDamage = 0;
                         enemy1TechDamage = 0;
                         enemy1TotalDamage = 0;
@@ -1019,7 +1060,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                         GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().attacks = true;
                         enemy2TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy2TotalDamage;
-                        damageCalculationsText.GetComponent<Text>().text = enemy2TargetUnit.name + " takes " + enemy2TotalDamage + " damage!";
+                        damageCalculationsText.GetComponent<Text>().text = GameObject.Find("EnemyUnit2").GetComponent<EnemyInformation>().Enemy.name + " attacks! \n" + enemy2TargetUnit.name + " takes " + enemy2TotalDamage + " damage!";
                         enemy2PhysicalDamage = 0;
                         enemy2TechDamage = 0;
                         enemy2TotalDamage = 0;
@@ -1056,7 +1097,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                         GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().attacks = true;
                         enemy3TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy3TotalDamage;
-                        damageCalculationsText.GetComponent<Text>().text = enemy3TargetUnit.name + " takes " + enemy3TotalDamage + " damage!";
+                        damageCalculationsText.GetComponent<Text>().text = GameObject.Find("EnemyUnit3").GetComponent<EnemyInformation>().Enemy.name + " attacks! \n" + enemy3TargetUnit.name + " takes " + enemy3TotalDamage + " damage!";
                         enemy3PhysicalDamage = 0;
                         enemy3TechDamage = 0;
                         enemy3TotalDamage = 0;
@@ -1093,7 +1134,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                         GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().attacks = true;
                         enemy4TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy4TotalDamage;
-                        damageCalculationsText.GetComponent<Text>().text = enemy4TargetUnit.name + " takes " + enemy4TotalDamage + " damage!";
+                        damageCalculationsText.GetComponent<Text>().text = GameObject.Find("EnemyUnit4").GetComponent<EnemyInformation>().Enemy.name + " attacks! \n" + enemy4TargetUnit.name + " takes " + enemy4TotalDamage + " damage!";
                         enemy4PhysicalDamage = 0;
                         enemy4TechDamage = 0;
                         enemy4TotalDamage = 0;
@@ -1130,7 +1171,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                         GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().attacks = true;
                         enemy5TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy5TotalDamage;
-                        damageCalculationsText.GetComponent<Text>().text = enemy5TargetUnit.name + " takes " + enemy5TotalDamage + " damage!";
+                        damageCalculationsText.GetComponent<Text>().text = GameObject.Find("EnemyUnit5").GetComponent<EnemyInformation>().Enemy.name + " attacks! \n" + enemy5TargetUnit.name + " takes " + enemy5TotalDamage + " damage!";
                         enemy5PhysicalDamage = 0;
                         enemy5TechDamage = 0;
                         enemy5TotalDamage = 0;
@@ -1167,7 +1208,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
                         GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().attacks = true;
                         enemy6TargetUnit.GetComponent<PlayerInformation>().healthPointsCurrent -= enemy6TotalDamage;
-                        damageCalculationsText.GetComponent<Text>().text = enemy6TargetUnit.name + " takes " + enemy6TotalDamage + " damage!";
+                        damageCalculationsText.GetComponent<Text>().text = GameObject.Find("EnemyUnit6").GetComponent<EnemyInformation>().Enemy.name + " attacks! \n" + enemy6TargetUnit.name + " takes " + enemy6TotalDamage + " damage!";
                         enemy6PhysicalDamage = 0;
                         enemy6TechDamage = 0;
                         enemy6TotalDamage = 0;
@@ -1211,6 +1252,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     enemy6Taunted = false;
 
                     timer = 0;
+                    damageCalculationStarted = false;
                     currentState = BattleStates.START;
                 }
             
@@ -1223,11 +1265,17 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
             case (BattleStates.WIN):
 
-                timer += Time.deltaTime;
+                damageCalculationsCanvas.SetActive(true);
+                damageCalculationsText.GetComponent<Text>().text = "Your party wins!";
 
-                if (timer >= 15 || Input.GetButtonDown("Fire1"))
+                GivePlayer1Experience();
+                GivePlayer2Experience();
+                GivePlayer3Experience();
+                GivePlayer4Experience();
+
+                if (Input.GetButtonDown("Fire1"))
                 {
-                    SceneManager.LoadScene("ThreeChoices");
+                    SceneManager.LoadScene("");
                 }
 
 
@@ -1238,7 +1286,12 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
             case (BattleStates.LOSE):
 
-                SceneManager.LoadScene("MainMenu");
+                damageCalculationsText.GetComponent<Text>().text = "Your party loses...";
+
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    SceneManager.LoadScene("MainMenu");
+                }
                 // Bring up a loss message!
                 // Send the player back to the main menu
 
@@ -1755,6 +1808,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4SpellsMenuCanvas.SetActive(false);
         player4SelectEnemyCanvas.SetActive(false);
         player3TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
 
     }
 
@@ -1771,6 +1825,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         player4SpellsMenuCanvas.SetActive(false);
         player4SelectEnemyCanvas.SetActive(false);
         player3TurnReady = true;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("Attack"), new BaseEventData(EventSystem.current));
     }
 
     // Player4SelectEnemy buttons
